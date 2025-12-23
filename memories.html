@@ -467,7 +467,7 @@
                             <div class="memory-card" onclick="openModal('./resource/memory-5.jpg', 'Cozy fireside moments 🔥')">
                                 <img src="./resource/memory-5.jpg" alt="Memory 5">
                                 <div class="memory-content">
-                                    <div class="-memory-title">Fireside Warmth</div>
+                                    <div class="memory-title">Fireside Warmth</div>
                                     <div class="memory-date">October 2024</div>
                                     <div class="memory-text">Cold days became warm when wrapped in your love! 🔥</div>
                                 </div>
@@ -488,7 +488,7 @@
             </div>
 
             <div class="text-center mt-12">
-                <a href="index.html" class="cute-button">
+                <a href="index.html" class="button">
                     Back to Home
                 </a>
             </div>
@@ -505,7 +505,7 @@
                 Every day with you is special, but today is extra magical! Happy Birthday!
             </p>
             <div class="text-sm opacity-70">
-                © 2024 Cute Birthday Love - Created with ❤️ and lots of hugs
+                © 2024 Birthday Love - Created with ❤️ and lots of hugs
             </div>
         </div>
     </footer>
@@ -527,7 +527,7 @@
         
         // Initialize timeline animations
         function initializeCuteTimeline() {
-            const timelineItems = document.querySelectorAll('.cute-timeline-item');
+            const timelineItems = document.querySelectorAll('.timeline-item');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -547,7 +547,7 @@
         
         // Initialize memory cards
         function initializeCuteCards() {
-            const memoryCards = document.querySelectorAll('.cute-memory-card');
+            const memoryCards = document.querySelectorAll('.memory-card');
             
             memoryCards.forEach((card, index) => {
                 // Stagger the initial animation
