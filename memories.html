@@ -67,8 +67,8 @@
             50% { background-position: 100% 50%; }
         }
         
-        /* Cute Navigation */
-        .cute-nav {
+        /* Navigation */
+        .nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border: none;
@@ -96,20 +96,20 @@
             color: white;
         }
         
-        /* Cute Hero */
-        .cute-hero {
+        /* Hero */
+        .hero {
             text-align: center;
             padding: 60px 20px;
         }
         
-        .cute-title {
+        .title {
             font-size: 3rem;
             color: var(--coral-pink);
             margin-bottom: 20px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
-        .cute-subtitle {
+        .subtitle {
             font-size: 1.2rem;
             color: var(--charcoal-gray);
             margin-bottom: 30px;
@@ -118,14 +118,14 @@
             margin-right: auto;
         }
         
-        /* Cute Timeline */
-        .cute-timeline {
+        /* Timeline */
+        .timeline {
             position: relative;
             max-width: 700px;
             margin: 0 auto;
         }
         
-        .cute-timeline::after {
+        .timeline::after {
             content: '';
             position: absolute;
             width: 3px;
@@ -137,7 +137,7 @@
             border-radius: 2px;
         }
         
-        .cute-timeline-item {
+        .timeline-item {
             padding: 15px 40px;
             position: relative;
             width: 50%;
@@ -146,12 +146,12 @@
             transition: all 0.6s ease;
         }
         
-        .cute-timeline-item.visible {
+        .timeline-item.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
-        .cute-timeline-item::after {
+        .timeline-item::after {
             content: '';
             position: absolute;
             width: 16px;
@@ -164,19 +164,19 @@
             z-index: 1;
         }
         
-        .cute-timeline-left {
+        .timeline-left {
             left: 0;
         }
         
-        .cute-timeline-right {
+        .timeline-right {
             left: 50%;
         }
         
-        .cute-timeline-right::after {
+        .timeline-right::after {
             left: -8px;
         }
         
-        .cute-timeline-content {
+        .timeline-content {
             padding: 20px 25px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
@@ -184,28 +184,28 @@
             border: 1px solid rgba(0, 0, 0, 0.08);
         }
         
-        .cute-timeline-date {
+        .timeline-date {
             color: var(--coral-pink);
             font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 8px;
         }
         
-        .cute-timeline-title {
+        .timeline-title {
             color: var(--charcoal-gray);
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 12px;
         }
         
-        .cute-timeline-text {
+        .timeline-text {
             color: var(--charcoal-gray);
             font-size: 0.9rem;
             line-height: 1.4;
         }
         
-        /* Cute Memory Cards */
-        .cute-memory-card {
+        /* Memory Cards */
+        .memory-card {
             background: var(--cloud-white);
             border-radius: 15px;
             overflow: hidden;
@@ -218,42 +218,42 @@
         .splide__track { overflow: visible; }
         .splide__list { gap: 1.5rem; }
         
-        .cute-memory-card:hover {
+        .memory-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
         }
         
-        .cute-memory-card img {
+        .memory-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
         
-        .cute-memory-content {
+        .memory-content {
             padding: 20px;
         }
         
-        .cute-memory-title {
+        .memory-title {
             color: var(--coral-pink);
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 8px;
         }
         
-        .cute-memory-date {
+        .memory-date {
             color: var(--pastel-pink);
             font-size: 0.8rem;
             margin-bottom: 12px;
         }
         
-        .cute-memory-text {
+        .memory-text {
             color: var(--charcoal-gray);
             font-size: 0.9rem;
             line-height: 1.4;
         }
         
-        /* Cute Button */
-        .cute-button {
+        /* Button */
+        .button {
             background: var(--golden-yellow);
             color: var(--charcoal-gray);
             border: none;
@@ -266,13 +266,13 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .cute-button:hover {
+        .button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
-        /* Cute Footer */
-        .cute-footer {
+        /* Footer */
+        .footer {
             background: var(--soft-blush);
             color: var(--charcoal-gray);
             text-align: center;
@@ -281,26 +281,26 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .cute-timeline::after {
+            .timeline::after {
                 left: 31px;
             }
             
-            .cute-timeline-item {
+            .timeline-item {
                 width: 100%;
                 padding-left: 70px;
                 padding-right: 25px;
             }
             
-            .cute-timeline-item::after {
+            .timeline-item::after {
                 left: 21px;
             }
             
-            .cute-timeline-right {
+            .timeline-right {
                 left: 0%;
             }
         }
         
-        /* Cute Custom Scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -323,8 +323,8 @@
     <!-- Soft Gradient Background -->
     <div class="soft-gradient"></div>
     
-    <!-- Cute Navigation -->
-    <nav class="cute-nav fixed top-0 left-0 right-0 z-50">
+    <!-- Navigation -->
+    <nav class="nav fixed top-0 left-0 right-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="quicksand text-2xl font-bold text-coral-pink">
@@ -339,78 +339,78 @@
         </div>
     </nav>
     
-    <!-- Cute Hero Section -->
-    <section class="cute-hero pt-32">
+    <!-- Hero Section -->
+    <section class="hero pt-32">
         <div class="max-w-4xl mx-auto">
-            <h1 class="cute-title quicksand font-bold">
+            <h1 class="title quicksand font-bold">
                 Our Sweet Memories 💕
             </h1>
-            <p class="cute-subtitle">
+            <p class="subtitle">
                 Every moment with you is a treasure! Here's to all the beautiful memories we've made together.
             </p>
         </div>
     </section>
     
-    <!-- Cute Memory Timeline -->
+    <!-- Memory Timeline -->
     <section class="py-20 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="quicksand text-3xl font-bold text-coral-pink text-center mb-12">
                 Our Love Story Timeline
             </h2>
             
-            <div class="cute-timeline">
-                <div class="cute-timeline-item cute-timeline-left">
-                    <div class="cute-timeline-content">
-                        <div class="cute-timeline-date">March 15, 2024</div>
-                        <div class="cute-timeline-title">First Meeting 💕</div>
-                        <div class="cute-timeline-text">The day our worlds collided and everything changed. From strangers to soulmates, our beautiful journey began!</div>
+            <div class="timeline">
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">March 15, 2024</div>
+                        <div class="timeline-title">First Meeting 💕</div>
+                        <div class="timeline-text">The day our worlds collided and everything changed. From strangers to soulmates, our beautiful journey began!</div>
                     </div>
                 </div>
                 
-                <div class="cute-timeline-item cute-timeline-right">
-                    <div class="cute-timeline-content">
-                        <div class="cute-timeline-date">April 22, 2024</div>
-                        <div class="cute-timeline-title">Coffee Date ☕</div>
-                        <div class="cute-timeline-text">Where caffeine met chemistry! Time stood still as we talked for hours.</div>
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">April 22, 2024</div>
+                        <div class="timeline-title">Coffee Date ☕</div>
+                        <div class="timeline-text">Where caffeine met chemistry! Time stood still as we talked for hours.</div>
                     </div>
                 </div>
                 
-                <div class="cute-timeline-item cute-timeline-left">
-                    <div class="cute-timeline-content">
-                        <div class="cute-timeline-date">June 8, 2024</div>
-                        <div class="cute-timeline-title">Beach Adventure 🏖️</div>
-                        <div class="cute-timeline-text">Footprints in the sand, memories in our hearts. The sunset witnessed our love story unfold!</div>
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 8, 2024</div>
+                        <div class="timeline-title">Beach Adventure 🏖️</div>
+                        <div class="timeline-text">Footprints in the sand, memories in our hearts. The sunset witnessed our love story unfold!</div>
                     </div>
                 </div>
                 
-                <div class="cute-timeline-item cute-timeline-right">
-                    <div class="cute-timeline-content">
-                        <div class="cute-timeline-date">August 14, 2024</div>
-                        <div class="cute-timeline-title">Meadow Picnic 🌸</div>
-                        <div class="cute-timeline-text">Surrounded by nature's beauty, but you were still the most beautiful sight!</div>
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">August 14, 2024</div>
+                        <div class="timeline-title">Meadow Picnic 🌸</div>
+                        <div class="timeline-text">Surrounded by nature's beauty, but you were still the most beautiful sight!</div>
                     </div>
                 </div>
                 
-                <div class="cute-timeline-item cute-timeline-left">
-                    <div class="cute-timeline-content">
-                        <div class="cute-timeline-date">October 30, 2024</div>
-                        <div class="cute-timeline-title">Cozy Fireside 🔥</div>
-                        <div class="cute-timeline-text">Cold days became warm when wrapped in your love and the glow of the fireplace!</div>
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">October 30, 2024</div>
+                        <div class="timeline-title">Cozy Fireside 🔥</div>
+                        <div class="timeline-text">Cold days became warm when wrapped in your love and the glow of the fireplace!</div>
                     </div>
                 </div>
                 
-                <div class="cute-timeline-item cute-timeline-right">
-                    <div class="cute-timeline-content">
-                        <div class="cute-timeline-date">December 7, 2024</div>
-                        <div class="cute-timeline-title">Under the Stars ✨</div>
-                        <div class="cute-timeline-text">Making wishes on shooting stars together and dreaming of our future!</div>
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">December 7, 2024</div>
+                        <div class="timeline-title">Under the Stars ✨</div>
+                        <div class="timeline-text">Making wishes on shooting stars together and dreaming of our future!</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Cute Photo Gallery -->
+    <!-- Photo Gallery -->
     <section class="py-20 px-6 bg-white/20 backdrop-blur-md">
         <div class="max-w-6xl mx-auto">
             <h2 class="quicksand text-3xl font-bold text-coral-pink text-center mb-8">
@@ -424,62 +424,62 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <li class="splide__slide">
-                            <div class="cute-memory-card" onclick="openModal('./resource/memory-1.jpg', 'Our first walk together 🌹')">
+                            <div class="memory-card" onclick="openModal('./resource/memory-1.jpg', 'Our first walk together 🌹')">
                                 <img src="./resource/memory-1.jpg" alt="Memory 1">
-                                <div class="cute-memory-content">
-                                    <div class="cute-memory-title">First Meeting</div>
-                                    <div class="cute-memory-date">March 2024</div>
-                                    <div class="cute-memory-text">The day our worlds collided and everything changed! 💕</div>
+                                <div class="memory-content">
+                                    <div class="memory-title">First Meeting</div>
+                                    <div class="memory-date">March 2024</div>
+                                    <div class="memory-text">The day our worlds collided and everything changed! 💕</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
-                            <div class="cute-memory-card" onclick="openModal('./resource/memory-2.jpg', 'Coffee and sweet conversations ☕')">
+                            <div class="memory-card" onclick="openModal('./resource/memory-2.jpg', 'Coffee and sweet conversations ☕')">
                                 <img src="./resource/memory-2.jpg" alt="Memory 2">
-                                <div class="cute-memory-content">
-                                    <div class="cute-memory-title">Coffee Date</div>
-                                    <div class="cute-memory-date">April 2024</div>
-                                    <div class="cute-memory-text">Where caffeine met chemistry! ☕💕</div>
+                                <div class="memory-content">
+                                    <div class="memory-title">Coffee Date</div>
+                                    <div class="memory-date">April 2024</div>
+                                    <div class="memory-text">Where caffeine met chemistry! ☕💕</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
-                            <div class="cute-memory-card" onclick="openModal('./resource/memory-3.jpg', 'Beach adventures together 🏖️')">
+                            <div class="memory-card" onclick="openModal('./resource/memory-3.jpg', 'Beach adventures together 🏖️')">
                                 <img src="./resource/memory-3.jpg" alt="Memory 3">
-                                <div class="cute-memory-content">
-                                    <div class="cute-memory-title">Beach Dreams</div>
-                                    <div class="cute-memory-date">June 2024</div>
-                                    <div class="cute-memory-text">Footprints in the sand, memories in our hearts! 🏖️</div>
+                                <div class="memory-content">
+                                    <div class="memory-title">Beach Dreams</div>
+                                    <div class="memory-date">June 2024</div>
+                                    <div class="memory-text">Footprints in the sand, memories in our hearts! 🏖️</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
-                            <div class="cute-memory-card" onclick="openModal('./resource/memory-4.jpg', 'Meadow picnics and sunshine 🌸')">
+                            <div class="memory-card" onclick="openModal('./resource/memory-4.jpg', 'Meadow picnics and sunshine 🌸')">
                                 <img src="./resource/memory-4.jpg" alt="Memory 4">
-                                <div class="cute-memory-content">
-                                    <div class="cute-memory-title">Meadow Magic</div>
-                                    <div class="cute-memory-date">August 2024</div>
-                                    <div class="cute-memory-text">Surrounded by nature's beauty, but you were still the most beautiful sight! 🌸</div>
+                                <div class="memory-content">
+                                    <div class="memory-title">Meadow Magic</div>
+                                    <div class="memory-date">August 2024</div>
+                                    <div class="memory-text">Surrounded by nature's beauty, but you were still the most beautiful sight! 🌸</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
-                            <div class="cute-memory-card" onclick="openModal('./resource/memory-5.jpg', 'Cozy fireside moments 🔥')">
+                            <div class="memory-card" onclick="openModal('./resource/memory-5.jpg', 'Cozy fireside moments 🔥')">
                                 <img src="./resource/memory-5.jpg" alt="Memory 5">
-                                <div class="cute-memory-content">
-                                    <div class="cute-memory-title">Fireside Warmth</div>
-                                    <div class="cute-memory-date">October 2024</div>
-                                    <div class="cute-memory-text">Cold days became warm when wrapped in your love! 🔥</div>
+                                <div class="memory-content">
+                                    <div class="-memory-title">Fireside Warmth</div>
+                                    <div class="memory-date">October 2024</div>
+                                    <div class="memory-text">Cold days became warm when wrapped in your love! 🔥</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
-                            <div class="cute-memory-card" onclick="openModal('./resource/memory-6.jpg', 'Stargazing together ✨')">
+                            <div class="memory-card" onclick="openModal('./resource/memory-6.jpg', 'Stargazing together ✨')">
                                 <img src="./resource/memory-6.jpg" alt="Memory 6">
-                                <div class="cute-memory-content">
-                                    <div class="cute-memory-title">Starry Nights</div>
-                                    <div class="cute-memory-date">December 2024</div>
-                                    <div class="cute-memory-text">Making wishes on shooting stars together! ✨</div>
+                                <div class="memory-content">
+                                    <div class="memory-title">Starry Nights</div>
+                                    <div class="memory-date">December 2024</div>
+                                    <div class="memory-text">Making wishes on shooting stars together! ✨</div>
                                 </div>
                             </div>
                         </li>
@@ -489,14 +489,14 @@
 
             <div class="text-center mt-12">
                 <a href="index.html" class="cute-button">
-                    Back to Birthday Fun 🎂
+                    Back to Home
                 </a>
             </div>
         </div>
     </section>
     
-    <!-- Cute Footer -->
-    <footer class="cute-footer">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="max-w-4xl mx-auto">
             <div class="quicksand text-xl font-bold mb-4">
                 Made with Love 💕
@@ -518,14 +518,14 @@
     </div>
     
     <script>
-        // Initialize cute timeline animations
+        // Initialize timeline animations
         document.addEventListener('DOMContentLoaded', function() {
             initializeCuteTimeline();
             initializeCuteCards();
             initializePhotoSlider();
         });
         
-        // Initialize cute timeline animations
+        // Initialize timeline animations
         function initializeCuteTimeline() {
             const timelineItems = document.querySelectorAll('.cute-timeline-item');
             
@@ -545,7 +545,7 @@
             });
         }
         
-        // Initialize cute memory cards
+        // Initialize memory cards
         function initializeCuteCards() {
             const memoryCards = document.querySelectorAll('.cute-memory-card');
             
