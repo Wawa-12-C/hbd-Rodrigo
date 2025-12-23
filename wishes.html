@@ -65,8 +65,8 @@
             50% { background-position: 100% 50%; }
         }
         
-        /* Cute Navigation */
-        .cute-nav {
+        /* Navigation */
+        .nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border: none;
@@ -94,20 +94,20 @@
             color: var(--charcoal-gray);
         }
         
-        /* Cute Hero */
-        .cute-hero {
+        /* Hero */
+        .hero {
             text-align: center;
             padding: 60px 20px;
         }
         
-        .cute-title {
+        .title {
             font-size: 3rem;
             color: var(--coral-pink);
             margin-bottom: 20px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
         }
         
-        .cute-subtitle {
+        .subtitle {
             font-size: 1.2rem;
             color: var(--charcoal-gray);
             margin-bottom: 30px;
@@ -116,8 +116,8 @@
             margin-right: auto;
         }
         
-        /* Cute Wish Fountain */
-        .cute-fountain {
+        /* Wish Fountain */
+        .fountain {
             width: 200px;
             height: 200px;
             margin: 0 auto;
@@ -133,12 +133,12 @@
             overflow: hidden;
         }
         
-        .cute-fountain:hover {
+        .fountain:hover {
             transform: scale(1.05);
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
         }
         
-        .cute-fountain::before {
+        .fountain::before {
             content: '';
             position: absolute;
             width: 100%;
@@ -152,8 +152,8 @@
             50% { opacity: 1; transform: scale(1.1); }
         }
         
-        /* Cute Wish Display */
-        .cute-wish-display {
+        /* Wish Display */
+        .wish-display {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(15px);
             border-radius: 25px;
@@ -167,21 +167,21 @@
             justify-content: center;
         }
         
-        .cute-wish-text {
+        .wish-text {
             font-size: 1.3rem;
             color: var(--coral-pink);
             line-height: 1.6;
             margin-bottom: 15px;
         }
         
-        .cute-wish-author {
+        .wish-author {
             color: var(--coral-pink);
             font-style: italic;
             font-size: 1rem;
         }
         
-        /* Cute Button */
-        .cute-button {
+        /* Button */
+        .button {
             background: var(--golden-yellow);
             color: var(--charcoal-gray);
             border: none;
@@ -194,13 +194,13 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .cute-button:hover {
+        .button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         
-        /* Floating Cute Elements */
-        .cute-float {
+        /* Floating Elements */
+        .float {
             position: absolute;
             color: var(--coral-pink);
             font-size: 1.2rem;
@@ -213,8 +213,8 @@
             50% { transform: translateY(-15px) rotate(5deg); opacity: 1; }
         }
         
-        /* Cute Footer */
-        .cute-footer {
+        /* Footer */
+        .footer {
             background: var(--soft-blush);
             color: var(--charcoal-gray);
             text-align: center;
@@ -223,17 +223,17 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .cute-fountain {
+            .fountain {
                 width: 180px;
                 height: 180px;
             }
             
-            .cute-title {
+            .title {
                 font-size: 2.2rem;
             }
         }
         
-        /* Cute Custom Scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -256,8 +256,8 @@
     <!-- Soft Gradient Background -->
     <div class="soft-gradient"></div>
     
-    <!-- Cute Navigation -->
-    <nav class="cute-nav fixed top-0 left-0 right-0 z-50">
+    <!-- Navigation -->
+    <nav class="nav fixed top-0 left-0 right-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="quicksand text-2xl font-bold text-coral-pink">
@@ -272,19 +272,19 @@
         </div>
     </nav>
     
-    <!-- Cute Hero Section -->
-    <section class="cute-hero pt-32">
+    <!-- Hero Section -->
+    <section class="hero pt-32">
         <div class="max-w-4xl mx-auto">
-            <h1 class="cute-title quicksand font-bold">
+            <h1 class="title quicksand font-bold">
                 Birthday Wishes & Dreams 🌟
             </h1>
-            <p class="cute-subtitle">
+            <p class="subtitle">
                 Today is all about celebrating YOU! Make a wish and let the magic begin. ✨
             </p>
         </div>
     </section>
     
-    <!-- Cute Wish Fountain -->
+    <!-- Wish Fountain -->
     <section class="py-20 px-6">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="quicksand text-3xl font-bold text-coral-pink mb-8">
@@ -295,27 +295,27 @@
                 Each wish is filled with love and hope for your beautiful future!
             </p>
             
-            <div class="cute-fountain mb-12" onclick="generateCuteWish()">
+            <div class="fountain mb-12" onclick="generateCuteWish()">
                 <div class="text-center z-10">
                     <div class="text-4xl mb-2">🌟</div>
                     <div class="text-coral-pink font-semibold">Make a Wish</div>
                 </div>
             </div>
             
-            <div class="cute-wish-display" id="cuteWishDisplay">
+            <div class="wish-display" id="cuteWishDisplay">
                 <p class="text-charcoal-gray/70">Click the magical fountain above to receive your birthday wish! ✨</p>
             </div>
             
             <div class="mt-12">
-                <a href="index.html" class="cute-button">
+                <a href="index.html" class="button">
                     Back to Birthday Fun 🎂
                 </a>
             </div>
         </div>
     </section>
     
-    <!-- Cute Footer -->
-    <footer class="cute-footer">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="max-w-4xl mx-auto">
             <div class="quicksand text-xl font-bold mb-4">
                 Made with Love 💕
@@ -329,53 +329,56 @@
         </div>
     </footer>
     
-    <!-- Floating Cute Elements -->
+    <!-- Floating Elements -->
     <div id="cuteFloaters"></div>
     
     <script>
-        // Simple cute wishes array
+        // Simple wishes array
         const cuteWishes = [
             "May your birthday be filled with endless joy, love, and all the things that make you smile! 😊",
-            "You deserve all the happiness in the world and more! Sending you the biggest birthday hugs! 🤗",
-            "Here's to another year of amazing adventures and beautiful memories together! 🌟",
-            "Every moment with you is a gift. May your birthday be as wonderful as you are! 💝",
-            "You make the world brighter just by being in it. Happy Birthday to the most amazing person! ☀️",
-            "May all your dreams come true today and always. You deserve every happiness! ✨",
-            "You're not just my love, you're my best friend and favorite person. Happy Birthday! 👫",
-            "Life is sweeter with you in it. Here's to more laughter, love, and cute moments! 🍰",
-            "You make my heart smile every single day. Wishing you the most magical birthday! 💖",
-            "May your birthday be as sweet and wonderful as you are! Sending lots of love! 💕"
+            "You deserve all the happiness in the world and more! Sending you the biggest birthday hugs! ",
+            "Warning: This birthday message may cause extreme cuteness, sudden smiles, and intense missing of your huggy girlfriend",
+            "My birthday wish? To teleport to you for just one hug! 🤩",
+            "I wish you could see yourself through my eyes -- you'd see a man worthy of every good thing 😘",
+            "I wish I could be the one to hand you your cake and celebrate with you in person! 🎂",
+            "You're not just my love, you're my best friend and favorite person. Happy Birthday 宝贝! ",
+            "Happy Birthday to my favorite notification! Getting a message from you always makes my day ",
+            "Important Birthday Poll: Which is sweeter? a) Your cake, b) Your smiles, or c) Me?",
+            "I wish you have good vibes, awesome food, and the perfect playlist",
+            "Happy Birthday! According to my calculations, the birthday boy owes me ∞ kisses 😘",
+            "Happy Birthday to the boy who has my whole heart! I'm sending you all my love today and always. ❤️",
+            "Happy Birthday. My main wish is that you don't get sick, you're not too tired, and nothing annoys you. Just a smooth, good day. That would make me happy."
         ];
         
-        // Initialize cute page
+        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             createCuteFloaters();
         });
         
-        // Generate cute wish
+        // Generate wish
         function generateCuteWish() {
             const randomWish = cuteWishes[Math.floor(Math.random() * cuteWishes.length)];
             const display = document.getElementById('cuteWishDisplay');
             
             // Animate fountain
             anime({
-                targets: '.cute-fountain',
+                targets: '.fountain',
                 scale: [1, 1.1, 1],
                 duration: 600,
                 easing: 'easeInOutQuad'
             });
             
-            // Update display with cute animation
+            // Update display with animation
             display.innerHTML = `
-                <div class="cute-wish-text comfortaa">${randomWish}</div>
-                <div class="cute-wish-author">✨ Magical Fountain ✨</div>
+                <div class="wish-text comfortaa">${randomWish}</div>
+                <div class="wish-author">✨ Magical Fountain ✨</div>
             `;
             
-            // Create cute celebration
+            // Create celebration
             createCuteCelebration();
         }
         
-        // Create cute celebration
+        // Create celebration
         function createCuteCelebration() {
             const colors = ['#FFF3B0', '#FFE066', '#FFD275', '#FFF8DC'];
             
@@ -410,7 +413,7 @@
             }
         }
         
-        // Create cute floaters
+        // Create floaters
         function createCuteFloaters() {
             const container = document.getElementById('cuteFloaters');
             const cuteElements = ['💖', '✨', '🌟', '💕', '🎈'];
@@ -418,7 +421,7 @@
             setInterval(() => {
                 if (Math.random() > 0.7) {
                     const floater = document.createElement('div');
-                    floater.className = 'cute-float';
+                    floater.className = 'float';
                     floater.textContent = cuteElements[Math.floor(Math.random() * cuteElements.length)];
                     floater.style.left = Math.random() * 100 + '%';
                     floater.style.top = '100%';
