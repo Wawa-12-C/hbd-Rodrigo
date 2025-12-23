@@ -67,7 +67,7 @@
             50% { background-position: 100% 50%; }
         }
         
-        /* Cute Navigation */
+        /* Navigation */
         .nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -96,7 +96,7 @@
             color: var(--charcoal-gray);
         }
         
-        /* Cute Hero Section */
+        /* Hero Section */
         .hero {
             text-align: center;
             padding: 60px 20px;
@@ -137,7 +137,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         
-        /* Cute Cake Section */
+        /* Cake Section */
         .cake-section {
             padding: 60px 20px;
             text-align: center;
@@ -174,7 +174,7 @@
             background-image: url('./resource/cute-cake.jpg');
         }
         
-        /* Cute Candles */
+        /* Candles */
         .candle {
             position: absolute;
             width: 6px;
@@ -227,7 +227,7 @@
             100% { opacity: 0; transform: translateX(-50%) translateY(-25px) scale(0.5); }
         }
         
-        /* Cute Music Player */
+        /* Music Player */
         .player {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
@@ -258,7 +258,7 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
         
-        /* Cute Memory Cards */
+        /* Memory Cards */
         .memory-card {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
@@ -301,7 +301,7 @@
             line-height: 1.4;
         }
         
-        /* Cute Wish Fountain */
+        /* Wish Fountain */
         .fountain {
             width: 200px;
             height: 200px;
@@ -337,7 +337,7 @@
             50% { opacity: 1; transform: scale(1.1); }
         }
         
-        /* Floating Cute Elements */
+        /* Floating Elements */
         .float {
             position: absolute;
             color: var(--coral-pink);
@@ -351,7 +351,7 @@
             50% { transform: translateY(-15px) rotate(5deg); opacity: 1; }
         }
         
-        /* Cute Footer */
+        /* Footer */
         .site-footer {
             background: var(--soft-blush);
             color: var(--charcoal-gray);
@@ -376,7 +376,7 @@
             }
         }
         
-        /* Cute Custom Scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -399,7 +399,7 @@
     <!-- Soft Gradient Background -->
     <div class="soft-gradient"></div>
     
-    <!-- Cute Navigation -->
+    <!-- Navigation -->
     <nav class="nav fixed top-0 left-0 right-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
@@ -415,7 +415,7 @@
         </div>
     </nav>
     
-    <!-- Cute Hero Section -->
+    <!-- Hero Section -->
     <section class="hero pt-32">
         <div class="max-w-4xl mx-auto">
             <div class="mb-8">
@@ -443,7 +443,7 @@
         </div>
     </section>
     
-    <!-- Cute Cake Section -->
+    <!-- Cake Section -->
     <section class="cake-section">
         <div class="max-w-4xl mx-auto">
             <h2 class="quicksand text-3xl font-bold text-coral-pink mb-4">
@@ -477,7 +477,7 @@
         </div>
     </section>
     
-    <!-- Cute Music Player -->
+    <!-- Music Player -->
     <section class="py-20 px-6">
         <div class="max-w-2xl mx-auto">
             <h2 class="quicksand text-2xl font-bold text-coral-pink text-center mb-8">
@@ -492,7 +492,7 @@
                         </button>
                         <div>
                             <h3 class="font-semibold text-coral-pink">Happy Birthday Song</h3>
-                            <p class="text-sm text-charcoal-gray/60">Traditional birthday melody</p>
+                            <p class="text-sm text-charcoal-gray/60">happy birthday melody</p>
                         </div>
                     </div>
                     <div class="text-right">
@@ -515,14 +515,14 @@
                 
                 <!-- Audio Element -->
                 <audio id="audio" preload="metadata">
-                    <source src="./resources/birthday-song.mp3" type="audio/mpeg">
+                    <source src="happy-birthday-song.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </div>
         </div>
     </section>
     
-    <!-- Cute Memory Carousel -->
+    <!-- Memory Carousel -->
     <section class="py-24 px-6 bg-white/20 backdrop-blur-md">
         <div class="max-w-6xl mx-auto">
             <h2 class="quicksand text-3xl font-bold text-coral-pink text-center mb-8">
@@ -607,7 +607,7 @@
         </div>
     </section>
     
-    <!-- Cute Wish Section -->
+    <!-- Wish Section -->
     <section class="py-20 px-6">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="quicksand text-3xl font-bold text-coral-pink mb-8">
@@ -637,7 +637,7 @@
         </div>
     </section>
     
-    <!-- Cute Footer -->
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="max-w-4xl mx-auto">
             <div class="quicksand text-xl font-bold mb-4">
@@ -652,18 +652,18 @@
         </div>
     </footer>
     
-    <!-- Floating Cute Elements -->
+    <!-- Floating Elements -->
     <div id="floaters"></div>
     
     <script>
-        // Cute JavaScript for interactions
+        // JavaScript for interactions
         let candlesBlown = 0;
         let totalCandles = 7;
         let isPlaying = false;
         let audio;
         let carousel;
         
-        // Cute birthday wishes
+        // birthday wishes
         const wishes = [
             "May your birthday be filled with endless joy, love, and all the things that make you smile! 😊",
             "You deserve all the happiness in the world and more! Sending you the biggest birthday hugs! 🤗",
@@ -677,7 +677,7 @@
             "May your birthday be as sweet and wonderful as you are! Sending lots of love! 💕"
         ];
         
-        // Initialize cute page
+        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             initializeElements();
             initializeCarousel();
@@ -685,7 +685,7 @@
             createFloaters();
         });
         
-        // Initialize cute elements
+        // Initialize elements
         function initializeElements() {
             // Hide candles initially
             const candles = document.querySelectorAll('.candle');
@@ -707,7 +707,7 @@
             });
         }
         
-        // Start cute cake animation
+        // Start cake animation
         function startCakeAnimation() {
             const cake = document.getElementById('birthdayCake');
             const message = document.getElementById('candleMessage');
@@ -721,7 +721,7 @@
                 easing: 'easeInOutQuad'
             });
             
-            // Show cute candles
+            // Show candles
             const candles = document.querySelectorAll('.candle');
             candles.forEach((candle, index) => {
                 setTimeout(() => {
@@ -742,7 +742,7 @@
             }, 800);
         }
         
-        // Blow out cute candle
+        // Blow out candle
         function blowOutCandle(candle, index) {
             candle.classList.add('blowout');
             candlesBlown++;
@@ -750,7 +750,7 @@
             // Update count
             document.getElementById('candleCount').textContent = totalCandles - candlesBlown;
             
-            // Cute celebration
+            // Celebration
             createConfetti(candle);
             
             // Check if all candles are blown
@@ -761,23 +761,23 @@
             }
         }
         
-        // Celebrate all cute candles
+        // Celebrate all candles
         function celebrateAllCandles() {
             const message = document.getElementById('candleMessage');
             
             message.textContent = '🎉 All candles blown out! Happy Birthday! 🎉';
             message.style.opacity = '1';
             
-            // Cute celebration effect
+            // Celebration effect
             createCelebration();
             
-            // Show special cute message
+            // Show special message
             setTimeout(() => {
                 showSpecialMessage();
             }, 2000);
         }
         
-        // Create cute confetti
+        // Create confetti
         function createConfetti(element) {
             const colors = ['#FFF3B0', '#FFE066', '#FFD275', '#FFF8DC'];
             
@@ -810,7 +810,7 @@
             }
         }
         
-        // Create cute celebration
+        // Create celebration
         function createCelebration() {
             const colors = ['#FFF3B0', '#FFE066', '#FFD275', '#FFF8DC'];
             
@@ -845,7 +845,7 @@
             }
         }
         
-        // Show cute special message
+        // Show special message
         function showSpecialMessage() {
             const specialMessage = document.createElement('div');
             specialMessage.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50';
@@ -871,7 +871,7 @@
             }, 100);
         }
         
-        // Close cute special message
+        // Close special message
         function closeSpecialMessage() {
             const specialMessage = document.querySelector('.fixed.inset-0.z-50');
             if (specialMessage) {
@@ -879,7 +879,7 @@
             }
         }
         
-        // Initialize cute carousel
+        // Initialize carousel
         function initializeCarousel() {
             carousel = new Splide('#carousel', {
                 type: 'loop',
@@ -899,7 +899,7 @@
             carousel.mount();
         }
         
-        // Initialize cute audio
+        // Initialize audio
         function initializeAudio() {
             audio = document.getElementById('audio');
             
@@ -919,7 +919,7 @@
             });
         }
         
-        // Toggle cute song
+        // Toggle song
         function toggleSong() {
             if (!audio) return;
             
@@ -934,7 +934,7 @@
             isPlaying = !isPlaying;
         }
         
-        // Play cute song directly
+        // Play song directly
         function playSong() {
             if (audio) {
                 audio.play();
@@ -943,7 +943,7 @@
             }
         }
         
-        // Generate cute wish
+        // Generate wish
         function generateWish() {
             const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
             const display = document.getElementById('wishDisplay');
@@ -956,16 +956,16 @@
                 easing: 'easeInOutQuad'
             });
             
-            // Update display with cute animation
+            // Update display with animation
             display.innerHTML = `
                 <div class="comfortaa text-xl text-coral-pink font-semibold animate-bounce">${randomWish}</div>
             `;
             
-            // Create cute celebration
+            // Create celebration
             createCelebration();
         }
         
-        // Start cute celebration
+        // Start celebration
         function startCelebration() {
             // Scroll to cake section
             document.querySelector('#birthdayCake').scrollIntoView({
@@ -973,7 +973,7 @@
                 block: 'center'
             });
             
-            // Create cute celebration burst
+            // Create celebration burst
             createCelebration();
             
             // Play song
@@ -982,7 +982,7 @@
             }, 1000);
         }
         
-        // Create cute floaters
+        // Create floaters
         function createFloaters() {
             const container = document.getElementById('floaters');
             const elements = ['💖', '✨', '🌟', '💕', '🎈'];
