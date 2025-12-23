@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎂 - Feliz cumpleaños 宝贝</title>
+
+    <a href="https://happy-birthday-rodrigo.w3spaces.com" target="_blank" title="Feliz cumpleaños 宝贝" alt="Feliz cumpleaños 宝贝">Feliz cumpleaños 宝贝</a>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Inter:wght@300;400;500&family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --soft-blush: #FFF9E6;
+            --cloud-white: #FFFFFF;
+            --butter-yellow: #FFF3B0;
+            --pastel-pink: #FFE8A3;
+            --sage-green: #FFF4CC;
+            --warm-cream: #FFF8F0;
+            --charcoal-gray: #4A4A4A;
+            --coral-pink: #FFC857;
+            --golden-yellow: #FFE066;
+            --lavender: #FFF3B0;
+            --caramel: #D6A85D;
+            --cocoa-brown: #6B4F31;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--soft-blush) 0%, var(--cloud-white) 50%, var(--warm-cream) 100%);
+            background-attachment: fixed;
+            color: var(--charcoal-gray);
+            overflow-x: hidden;
+        }
+        
+        .quicksand { font-family: 'Quicksand', sans-serif; }
+        .comfortaa { font-family: 'Comfortaa', cursive; }
+        
+        /* Soft Gradient Background */
+        .soft-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, 
+                rgba(249, 232, 232, 0.4) 0%, 
+                rgba(255, 255, 255, 0.5) 25%, 
+                rgba(232, 244, 232, 0.3) 50%, 
+                rgba(255, 248, 240, 0.4) 75%, 
+                rgba(249, 232, 232, 0.4) 100%);
+            background-size: 400% 400%;
+            animation: softFlow 20s ease-in-out infinite;
+        }
+        
+        @keyframes softFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Cute Navigation */
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-link {
+            color: var(--charcoal-gray);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            background: var(--butter-yellow);
+            color: var(--charcoal-gray);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            background: var(--golden-yellow);
+            color: var(--charcoal-gray);
+        }
+        
+        /* Cute Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .title {
+            font-size: 3rem;
+            color: var(--coral-pink);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--charcoal-gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .button {
+            background: var(--golden-yellow);
+            color: var(--charcoal-gray);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Cute Cake Section */
+        .cake-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .cake-container {
+            position: relative;
+            width: 280px;
+            height: 320px;
+            margin: 0 auto 40px;
+            background: var(--cloud-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        
+        .cake-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .cake {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all 0.5s ease;
+        }
+        
+        .cake.base {
+            background-image: url('./resource/cute-cake.jpg');
+        }
+        
+        /* Cute Candles */
+        .candle {
+            position: absolute;
+            width: 6px;
+            height: 25px;
+            background: linear-gradient(to top, var(--coral-pink), var(--golden-yellow));
+            border-radius: 3px 3px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 6px;
+            background: radial-gradient(circle, #FF6B6B, #FF4444);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-1deg); }
+            100% { transform: translateX(-50%) scale(1.05) rotate(1deg); }
+        }
+        
+        .candle.blowout::before {
+            animation: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .candle.blowout::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 8px;
+            background: rgba(128, 128, 128, 0.6);
+            animation: smoke 2s ease-out forwards;
+        }
+        
+        @keyframes smoke {
+            0% { opacity: 0.8; transform: translateX(-50%) translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-25px) scale(0.5); }
+        }
+        
+        /* Cute Music Player */
+        .player {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin: 40px auto;
+            max-width: 400px;
+        }
+        
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--golden-yellow);
+            border: none;
+            color: var(--charcoal-gray);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Cute Memory Cards */
+        .memory-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: none;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .memory-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .memory-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .memory-content {
+            padding: 20px;
+        }
+        
+        .memory-title {
+            color: var(--coral-pink);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .memory-date {
+            color: var(--pastel-pink);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        
+        .memory-text {
+            color: var(--charcoal-gray);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Cute Wish Fountain */
+        .fountain {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--soft-blush), var(--butter-yellow));
+            border-radius: 50%;
+            border: 3px solid var(--golden-yellow);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fountain:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .fountain::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            animation: fountainGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes fountainGlow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        
+        /* Floating Cute Elements */
+        .float {
+            position: absolute;
+            color: var(--coral-pink);
+            font-size: 1.2rem;
+            animation: floatAnim 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-15px) rotate(5deg); opacity: 1; }
+        }
+        
+        /* Cute Footer */
+        .site-footer {
+            background: var(--soft-blush);
+            color: var(--charcoal-gray);
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cake-container {
+                width: 250px;
+                height: 280px;
+            }
+            
+            .fountain {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        /* Cute Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--soft-blush);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--golden-yellow);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--coral-pink);
+        }
+    </style>
+</head>
+<body>
+    <!-- Soft Gradient Background -->
+    <div class="soft-gradient"></div>
+    
+    <!-- Cute Navigation -->
+    <nav class="nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="quicksand text-2xl font-bold text-coral-pink">
+                    Feliz cumpleaños 宝贝 🎂
+                </div>
+                <div class="flex space-x-2">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="memories.html" class="nav-link">Memories</a>
+                    <a href="wishes.html" class="nav-link">Wishes</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Cute Hero Section -->
+    <section class="hero pt-32">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-8">
+                <img src="./resource/cute-hero.jpg" alt="Cute Birthday Celebration" class="w-64 h-64 mx-auto rounded-3xl shadow-lg">
+            </div>
+            
+            <h1 class="title quicksand font-bold">
+                Happy Birthday! 🎉
+            </h1>
+            
+            <p class="subtitle">
+                Happy Birthday to my favorite person! 
+                Though I can't be there to hug you today, I'm celebrating you with all my heart. 
+                I love you more than distance can measure! 🎉❤️ 
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center">
+                <button onclick="startCelebration()" class="button">
+                    Start Celebration! 🎂
+                </button>
+                <button onclick="playSong()" class="button">
+                    Play Song 🎵
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cute Cake Section -->
+    <section class="cake-section">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="quicksand text-3xl font-bold text-coral-pink mb-4">
+                Make a Wish! ✨
+            </h2>
+            <p class="text-charcoal-gray mb-8 max-w-2xl mx-auto">
+                Click on this adorable cake to watch it come to life, then blow out the candles 
+                by clicking on each one. Your birthday magic awaits!
+            </p>
+            
+            <div class="cake-container" id="birthdayCake" onclick="startCakeAnimation()">
+                <div class="cake base" id="cake"></div>
+                <!-- Candles will be positioned by JavaScript -->
+                <div class="candle" style="top: 15px; left: 60px;" data-candle="1"></div>
+                <div class="candle" style="top: 12px; left: 85px;" data-candle="2"></div>
+                <div class="candle" style="top: 18px; left: 110px;" data-candle="3"></div>
+                <div class="candle" style="top: 14px; left: 135px;" data-candle="4"></div>
+                <div class="candle" style="top: 16px; left: 160px;" data-candle="5"></div>
+                <div class="candle" style="top: 13px; left: 185px;" data-candle="6"></div>
+                <div class="candle" style="top: 17px; left: 210px;" data-candle="7"></div>
+            </div>
+            
+            <div class="text-center mt-6">
+                <div id="candleMessage" class="comfortaa text-lg text-coral-pink mb-4 opacity-0 transition-opacity duration-500">
+                    🎂 Click the cake to start the magic! 🎂
+                </div>
+                <div class="text-sm text-charcoal-gray/70">
+                    Candles remaining: <span id="candleCount" class="font-bold text-pastel-pink">7</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cute Music Player -->
+    <section class="py-20 px-6">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="quicksand text-2xl font-bold text-coral-pink text-center mb-8">
+                Our Birthday Song 🎵
+            </h2>
+            
+            <div class="player">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center space-x-4">
+                        <button id="playButton" class="play-btn" onclick="toggleSong()">
+                            <span id="playIcon">▶️</span>
+                        </button>
+                        <div>
+                            <h3 class="font-semibold text-coral-pink">Happy Birthday Song</h3>
+                            <p class="text-sm text-charcoal-gray/60">Traditional birthday melody</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div id="currentTime" class="text-sm text-charcoal-gray/60">0:00</div>
+                        <div class="text-xs text-charcoal-gray/40">20 seconds</div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <div class="bg-pastel-pink/20 rounded-full h-2 mb-2">
+                        <div id="progressBar" class="bg-gradient-to-r from-pastel-pink to-coral-pink h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="comfortaa text-coral-pink">
+                        "Wishing you the most wonderful birthday filled with love and joy!"
+                    </p>
+                </div>
+                
+                <!-- Audio Element -->
+                <audio id="audio" preload="metadata">
+                    <source src="./resources/birthday-song.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cute Memory Carousel -->
+    <section class="py-24 px-6 bg-white/20 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="quicksand text-3xl font-bold text-coral-pink text-center mb-8">
+                Our Memories 💕
+            </h2>
+            <p class="text-center text-charcoal-gray mb-12 max-w-2xl mx-auto">
+                Every moment with you is a treasure! Here's to all the beautiful memories we've made together.
+            </p>
+            
+            <div class="splide mb-12" id="carousel">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="memory-card">
+                                <img src="./resource/memory-1.jpg" alt="Memory 1">
+                                <div class="memory-content">
+                                    <div class="memory-title">First Meeting</div>
+                                    <div class="memory-date">March 2024</div>
+                                    <div class="memory-text">The day our worlds collided and everything changed! 💕</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="memory-card">
+                                <img src="./resource/memory-2.jpg" alt="Memory 2">
+                                <div class="memory-content">
+                                    <div class="memory-title">Coffee Date</div>
+                                    <div class="memory-date">April 2024</div>
+                                    <div class="memory-text">Where caffeine met chemistry! ☕💕</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="memory-card">
+                                <img src="./resource/memory-3.jpg" alt="Memory 3">
+                                <div class="memory-content">
+                                    <div class="memory-title">Beach Adventure</div>
+                                    <div class="memory-date">June 2024</div>
+                                    <div class="memory-text">Footprints in the sand, memories in our hearts! 🏖️</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="memory-card">
+                                <img src="./resource/memory-4.jpg" alt="Memory 4">
+                                <div class="memory-content">
+                                    <div class="memory-title">Meadow Picnic</div>
+                                    <div class="memory-date">August 2024</div>
+                                    <div class="memory-text">Surrounded by nature's beauty, but you were still the most beautiful sight! 🌸</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="memory-card">
+                                <img src="./resource/memory-5.jpg" alt="Memory 5">
+                                <div class="memory-content">
+                                    <div class="memory-title">Cozy Fireside</div>
+                                    <div class="memory-date">October 2024</div>
+                                    <div class="memory-text">Cold days became warm when wrapped in your love! 🔥</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="memory-card">
+                                <img src="./resource/memory-6.jpg" alt="Memory 6">
+                                <div class="memory-content">
+                                    <div class="memory-title">Under the Stars</div>
+                                    <div class="memory-date">December 2024</div>
+                                    <div class="memory-text">Making wishes on shooting stars together! ✨</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-20">
+                <a href="memories.html" class="button">
+                    See All Memories 💭
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cute Wish Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="quicksand text-3xl font-bold text-coral-pink mb-8">
+                Make a Birthday Wish! 🌟
+            </h2>
+            <p class="text-charcoal-gray mb-12 max-w-2xl mx-auto">
+                Close your eyes, make a wish, and click on our magical fountain. 
+                Each wish is filled with love and hope for your beautiful future!
+            </p>
+            
+            <div class="fountain mb-12" onclick="generateWish()">
+                <div class="text-center z-10">
+                    <div class="text-4xl mb-2">🌟</div>
+                    <div class="text-coral-pink font-semibold">Make a Wish</div>
+                </div>
+            </div>
+            
+            <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 min-h-[120px] flex items-center justify-center" id="wishDisplay">
+                <p class="text-charcoal-gray/70">Click the magical fountain above to receive your birthday wish! ✨</p>
+            </div>
+            
+            <div class="mt-12">
+                <a href="wishes.html" class="button">
+                    More Wishes ✨
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cute Footer -->
+    <footer class="site-footer">
+        <div class="max-w-4xl mx-auto">
+            <div class="quicksand text-xl font-bold mb-4">
+                Made with Love 💕
+            </div>
+            <p class="mb-6">
+                Happy Birthday! My heart is with you today even if I can't be.
+            </p>
+            <div class="text-sm opacity-70">
+                © 2025 Feliz cumpleaños 宝贝 - Created with ❤️ and lots of hugs
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating Cute Elements -->
+    <div id="floaters"></div>
+    
+    <script>
+        // Cute JavaScript for interactions
+        let candlesBlown = 0;
+        let totalCandles = 7;
+        let isPlaying = false;
+        let audio;
+        let carousel;
+        
+        // Cute birthday wishes
+        const wishes = [
+            "May your birthday be filled with endless joy, love, and all the things that make you smile! 😊",
+            "You deserve all the happiness in the world and more! Sending you the biggest birthday hugs! 🤗",
+            "Here's to another year of amazing adventures and beautiful memories together! 🌟",
+            "Every moment with you is a gift. May your birthday be as wonderful as you are! 💝",
+            "You make the world brighter just by being in it. Happy Birthday to the most amazing person! ☀️",
+            "May all your dreams come true today and always. You deserve every happiness! ✨",
+            "You're not just my love, you're my best friend and favorite person. Happy Birthday! 👫",
+            "Life is sweeter with you in it. Here's to more laughter, love, and cute moments! 🍰",
+            "You make my heart smile every single day. Wishing you the most magical birthday! 💖",
+            "May your birthday be as sweet and wonderful as you are! Sending lots of love! 💕"
+        ];
+        
+        // Initialize cute page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeElements();
+            initializeCarousel();
+            initializeAudio();
+            createFloaters();
+        });
+        
+        // Initialize cute elements
+        function initializeElements() {
+            // Hide candles initially
+            const candles = document.querySelectorAll('.candle');
+            candles.forEach(candle => {
+                candle.style.opacity = '0';
+            });
+            
+            // Initialize message
+            document.getElementById('candleMessage').style.opacity = '0';
+            
+            // Add candle click listeners
+            candles.forEach((candle, index) => {
+                candle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (!this.classList.contains('blowout')) {
+                        blowOutCandle(this, index);
+                    }
+                });
+            });
+        }
+        
+        // Start cute cake animation
+        function startCakeAnimation() {
+            const cake = document.getElementById('birthdayCake');
+            const message = document.getElementById('candleMessage');
+            
+            // Animate cake
+            anime({
+                targets: cake,
+                scale: [1, 1.05, 1],
+                rotate: [0, 2, -2, 0],
+                duration: 1000,
+                easing: 'easeInOutQuad'
+            });
+            
+            // Show cute candles
+            const candles = document.querySelectorAll('.candle');
+            candles.forEach((candle, index) => {
+                setTimeout(() => {
+                    candle.style.opacity = '1';
+                    anime({
+                        targets: candle,
+                        scale: [0, 1],
+                        duration: 500,
+                        easing: 'easeOutBack'
+                    });
+                }, index * 150);
+            });
+            
+            // Update message
+            setTimeout(() => {
+                message.textContent = '🎂 Your cute cake is ready! Blow out the candles! 🎂';
+                message.style.opacity = '1';
+            }, 800);
+        }
+        
+        // Blow out cute candle
+        function blowOutCandle(candle, index) {
+            candle.classList.add('blowout');
+            candlesBlown++;
+            
+            // Update count
+            document.getElementById('candleCount').textContent = totalCandles - candlesBlown;
+            
+            // Cute celebration
+            createConfetti(candle);
+            
+            // Check if all candles are blown
+            if (candlesBlown === totalCandles) {
+                setTimeout(() => {
+                    celebrateAllCandles();
+                }, 1000);
+            }
+        }
+        
+        // Celebrate all cute candles
+        function celebrateAllCandles() {
+            const message = document.getElementById('candleMessage');
+            
+            message.textContent = '🎉 All candles blown out! Happy Birthday! 🎉';
+            message.style.opacity = '1';
+            
+            // Cute celebration effect
+            createCelebration();
+            
+            // Show special cute message
+            setTimeout(() => {
+                showSpecialMessage();
+            }, 2000);
+        }
+        
+        // Create cute confetti
+        function createConfetti(element) {
+            const colors = ['#FFF3B0', '#FFE066', '#FFD275', '#FFF8DC'];
+            
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.width = '6px';
+                confetti.style.height = '6px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                
+                document.body.appendChild(confetti);
+                
+                anime({
+                    targets: confetti,
+                    translateY: window.innerHeight + 100,
+                    translateX: (Math.random() - 0.5) * 150,
+                    rotate: Math.random() * 360,
+                    opacity: [1, 0],
+                    duration: 3000,
+                    easing: 'easeOutQuad',
+                    complete: function() {
+                        confetti.remove();
+                    }
+                });
+            }
+        }
+        
+        // Create cute celebration
+        function createCelebration() {
+            const colors = ['#FFF3B0', '#FFE066', '#FFD275', '#FFF8DC'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = '8px';
+                    confetti.style.height = '8px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '9999';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    anime({
+                        targets: confetti,
+                        translateY: window.innerHeight + 100,
+                        translateX: (Math.random() - 0.5) * 200,
+                        rotate: Math.random() * 360,
+                        opacity: [1, 0],
+                        duration: 2500,
+                        easing: 'easeOutQuad',
+                        complete: function() {
+                            confetti.remove();
+                        }
+                    });
+                }, i * 100);
+            }
+        }
+        
+        // Show cute special message
+        function showSpecialMessage() {
+            const specialMessage = document.createElement('div');
+            specialMessage.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50';
+            specialMessage.innerHTML = `
+                <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center transform scale-0" id="specialBox">
+                    <div class="text-6xl mb-4">🎂</div>
+                    <h2 class="quicksand text-3xl font-bold text-coral-pink mb-4">Happy Birthday!</h2>
+                    <p class="comfortaa text-lg text-charcoal-gray mb-6">
+                        All the best wishes today and always. 
+                        Hope your day is amazing! Can't wait to celebrate with you soon. 💕
+                    </p>
+                    <button onclick="closeSpecialMessage()" class="button">
+                        I Love You! 💖
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(specialMessage);
+            
+            setTimeout(() => {
+                document.getElementById('specialBox').classList.remove('scale-0');
+                document.getElementById('specialBox').classList.add('scale-100');
+            }, 100);
+        }
+        
+        // Close cute special message
+        function closeSpecialMessage() {
+            const specialMessage = document.querySelector('.fixed.inset-0.z-50');
+            if (specialMessage) {
+                specialMessage.remove();
+            }
+        }
+        
+        // Initialize cute carousel
+        function initializeCarousel() {
+            carousel = new Splide('#carousel', {
+                type: 'loop',
+                perPage: 3,
+                perMove: 1,
+                gap: '1.5rem',
+                autoplay: true,
+                interval: 4000,
+                speed: 650,
+                focus: 'center',
+                pauseOnHover: true,
+                breakpoints: {
+                    768: { perPage: 1 },
+                    1024: { perPage: 2 }
+                }
+            });
+            carousel.mount();
+        }
+        
+        // Initialize cute audio
+        function initializeAudio() {
+            audio = document.getElementById('audio');
+            
+            audio.addEventListener('timeupdate', function() {
+                const progress = (this.currentTime / this.duration) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+                
+                const minutes = Math.floor(this.currentTime / 60);
+                const seconds = Math.floor(this.currentTime % 60);
+                document.getElementById('currentTime').textContent = 
+                    minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            });
+            
+            audio.addEventListener('ended', function() {
+                isPlaying = false;
+                document.getElementById('playIcon').textContent = '▶️';
+            });
+        }
+        
+        // Toggle cute song
+        function toggleSong() {
+            if (!audio) return;
+            
+            if (isPlaying) {
+                audio.pause();
+                document.getElementById('playIcon').textContent = '▶️';
+            } else {
+                audio.play();
+                document.getElementById('playIcon').textContent = '⏸️';
+            }
+            
+            isPlaying = !isPlaying;
+        }
+        
+        // Play cute song directly
+        function playSong() {
+            if (audio) {
+                audio.play();
+                isPlaying = true;
+                document.getElementById('playIcon').textContent = '⏸️';
+            }
+        }
+        
+        // Generate cute wish
+        function generateWish() {
+            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+            const display = document.getElementById('wishDisplay');
+            
+            // Animate fountain
+            anime({
+                targets: '.fountain',
+                scale: [1, 1.1, 1],
+                duration: 600,
+                easing: 'easeInOutQuad'
+            });
+            
+            // Update display with cute animation
+            display.innerHTML = `
+                <div class="comfortaa text-xl text-coral-pink font-semibold animate-bounce">${randomWish}</div>
+            `;
+            
+            // Create cute celebration
+            createCelebration();
+        }
+        
+        // Start cute celebration
+        function startCelebration() {
+            // Scroll to cake section
+            document.querySelector('#birthdayCake').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+            
+            // Create cute celebration burst
+            createCelebration();
+            
+            // Play song
+            setTimeout(() => {
+                playSong();
+            }, 1000);
+        }
+        
+        // Create cute floaters
+        function createFloaters() {
+            const container = document.getElementById('floaters');
+            const elements = ['💖', '✨', '🌟', '💕', '🎈'];
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const floater = document.createElement('div');
+                    floater.className = 'float';
+                    floater.textContent = elements[Math.floor(Math.random() * elements.length)];
+                    floater.style.left = Math.random() * 100 + '%';
+                    floater.style.top = '100%';
+                    floater.style.animationDelay = Math.random() * 2 + 's';
+                    container.appendChild(floater);
+                    
+                    anime({
+                        targets: floater,
+                        translateY: -window.innerHeight - 100,
+                        duration: 8000,
+                        easing: 'linear',
+                        complete: function() {
+                            floater.remove();
+                        }
+                    });
+                }
+            }, 2000);
+        }
+        
+        // Export functions
+        window.startCelebration = startCelebration;
+        window.playSong = playSong;
+        window.toggleSong = toggleSong;
+        window.startCakeAnimation = startCakeAnimation;
+        window.generateWish = generateWish;
+        window.closeSpecialMessage = closeSpecialMessage;
+    </script>
+</body>
+</html>
+        .splide__track {
+            overflow: visible;
+        }
+
+        .splide__list {
+            padding-bottom: 16px;
+        }

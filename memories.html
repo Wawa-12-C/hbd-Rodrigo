@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories - Feliz cumpleaños 宝贝</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Inter:wght@300;400;500&family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --soft-blush: #FFF9E6;
+            --cloud-white: #FFFFFF;
+            --butter-yellow: #FFF3B0;
+            --pastel-pink: #FFE8A3;
+            --sage-green: #FFF4CC;
+            --warm-cream: #FFF8F0;
+            --charcoal-gray: #4A4A4A;
+            --coral-pink: #FFC857;
+            --golden-yellow: #FFE066;
+            --lavender: #FFF3B0;
+            --caramel: #D6A85D;
+            --cocoa-brown: #6B4F31;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--soft-blush) 0%, var(--cloud-white) 50%, var(--warm-cream) 100%);
+            background-attachment: fixed;
+            color: var(--charcoal-gray);
+            overflow-x: hidden;
+        }
+        
+        .quicksand { font-family: 'Quicksand', sans-serif; }
+        .comfortaa { font-family: 'Comfortaa', cursive; }
+        
+        /* Soft Gradient Background */
+        .soft-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, 
+                rgba(249, 232, 232, 0.4) 0%, 
+                rgba(255, 255, 255, 0.5) 25%, 
+                rgba(232, 244, 232, 0.3) 50%, 
+                rgba(255, 248, 240, 0.4) 75%, 
+                rgba(249, 232, 232, 0.4) 100%);
+            background-size: 400% 400%;
+            animation: softFlow 20s ease-in-out infinite;
+        }
+        
+        @keyframes softFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Cute Navigation */
+        .cute-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-link {
+            color: var(--charcoal-gray);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            background: var(--pastel-pink);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            background: var(--coral-pink);
+            color: white;
+        }
+        
+        /* Cute Hero */
+        .cute-hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .cute-title {
+            font-size: 3rem;
+            color: var(--coral-pink);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .cute-subtitle {
+            font-size: 1.2rem;
+            color: var(--charcoal-gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Cute Timeline */
+        .cute-timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cute-timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--butter-yellow), var(--golden-yellow));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+            border-radius: 2px;
+        }
+        
+        .cute-timeline-item {
+            padding: 15px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .cute-timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .cute-timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background: var(--pastel-pink);
+            border: 3px solid var(--cloud-white);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .cute-timeline-left {
+            left: 0;
+        }
+        
+        .cute-timeline-right {
+            left: 50%;
+        }
+        
+        .cute-timeline-right::after {
+            left: -8px;
+        }
+        
+        .cute-timeline-content {
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .cute-timeline-date {
+            color: var(--coral-pink);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .cute-timeline-title {
+            color: var(--charcoal-gray);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .cute-timeline-text {
+            color: var(--charcoal-gray);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Cute Memory Cards */
+        .cute-memory-card {
+            background: var(--cloud-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+        }
+
+        .splide__track { overflow: visible; }
+        .splide__list { gap: 1.5rem; }
+        
+        .cute-memory-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .cute-memory-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .cute-memory-content {
+            padding: 20px;
+        }
+        
+        .cute-memory-title {
+            color: var(--coral-pink);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .cute-memory-date {
+            color: var(--pastel-pink);
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+        
+        .cute-memory-text {
+            color: var(--charcoal-gray);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Cute Button */
+        .cute-button {
+            background: var(--golden-yellow);
+            color: var(--charcoal-gray);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cute-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Cute Footer */
+        .cute-footer {
+            background: var(--soft-blush);
+            color: var(--charcoal-gray);
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cute-timeline::after {
+                left: 31px;
+            }
+            
+            .cute-timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .cute-timeline-item::after {
+                left: 21px;
+            }
+            
+            .cute-timeline-right {
+                left: 0%;
+            }
+        }
+        
+        /* Cute Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--soft-blush);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--golden-yellow);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--coral-pink);
+        }
+    </style>
+</head>
+<body>
+    <!-- Soft Gradient Background -->
+    <div class="soft-gradient"></div>
+    
+    <!-- Cute Navigation -->
+    <nav class="cute-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="quicksand text-2xl font-bold text-coral-pink">
+                    Birthday Love 🎂
+                </div>
+                <div class="flex space-x-2">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="memories.html" class="nav-link active">Memories</a>
+                    <a href="wishes.html" class="nav-link">Wishes</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Cute Hero Section -->
+    <section class="cute-hero pt-32">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="cute-title quicksand font-bold">
+                Our Sweet Memories 💕
+            </h1>
+            <p class="cute-subtitle">
+                Every moment with you is a treasure! Here's to all the beautiful memories we've made together.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Cute Memory Timeline -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="quicksand text-3xl font-bold text-coral-pink text-center mb-12">
+                Our Love Story Timeline
+            </h2>
+            
+            <div class="cute-timeline">
+                <div class="cute-timeline-item cute-timeline-left">
+                    <div class="cute-timeline-content">
+                        <div class="cute-timeline-date">March 15, 2024</div>
+                        <div class="cute-timeline-title">First Meeting 💕</div>
+                        <div class="cute-timeline-text">The day our worlds collided and everything changed. From strangers to soulmates, our beautiful journey began!</div>
+                    </div>
+                </div>
+                
+                <div class="cute-timeline-item cute-timeline-right">
+                    <div class="cute-timeline-content">
+                        <div class="cute-timeline-date">April 22, 2024</div>
+                        <div class="cute-timeline-title">Coffee Date ☕</div>
+                        <div class="cute-timeline-text">Where caffeine met chemistry! Time stood still as we talked for hours.</div>
+                    </div>
+                </div>
+                
+                <div class="cute-timeline-item cute-timeline-left">
+                    <div class="cute-timeline-content">
+                        <div class="cute-timeline-date">June 8, 2024</div>
+                        <div class="cute-timeline-title">Beach Adventure 🏖️</div>
+                        <div class="cute-timeline-text">Footprints in the sand, memories in our hearts. The sunset witnessed our love story unfold!</div>
+                    </div>
+                </div>
+                
+                <div class="cute-timeline-item cute-timeline-right">
+                    <div class="cute-timeline-content">
+                        <div class="cute-timeline-date">August 14, 2024</div>
+                        <div class="cute-timeline-title">Meadow Picnic 🌸</div>
+                        <div class="cute-timeline-text">Surrounded by nature's beauty, but you were still the most beautiful sight!</div>
+                    </div>
+                </div>
+                
+                <div class="cute-timeline-item cute-timeline-left">
+                    <div class="cute-timeline-content">
+                        <div class="cute-timeline-date">October 30, 2024</div>
+                        <div class="cute-timeline-title">Cozy Fireside 🔥</div>
+                        <div class="cute-timeline-text">Cold days became warm when wrapped in your love and the glow of the fireplace!</div>
+                    </div>
+                </div>
+                
+                <div class="cute-timeline-item cute-timeline-right">
+                    <div class="cute-timeline-content">
+                        <div class="cute-timeline-date">December 7, 2024</div>
+                        <div class="cute-timeline-title">Under the Stars ✨</div>
+                        <div class="cute-timeline-text">Making wishes on shooting stars together and dreaming of our future!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cute Photo Gallery -->
+    <section class="py-20 px-6 bg-white/20 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="quicksand text-3xl font-bold text-coral-pink text-center mb-8">
+                Our Photo Collection 📸
+            </h2>
+            <p class="text-center text-charcoal-gray mb-12 max-w-2xl mx-auto">
+                Each photo tells a story of our beautiful journey together. Slide through and click any photo to see it bigger!
+            </p>
+
+            <div class="splide" id="memoriesSlider">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="cute-memory-card" onclick="openModal('./resource/memory-1.jpg', 'Our first walk together 🌹')">
+                                <img src="./resource/memory-1.jpg" alt="Memory 1">
+                                <div class="cute-memory-content">
+                                    <div class="cute-memory-title">First Meeting</div>
+                                    <div class="cute-memory-date">March 2024</div>
+                                    <div class="cute-memory-text">The day our worlds collided and everything changed! 💕</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="cute-memory-card" onclick="openModal('./resource/memory-2.jpg', 'Coffee and sweet conversations ☕')">
+                                <img src="./resource/memory-2.jpg" alt="Memory 2">
+                                <div class="cute-memory-content">
+                                    <div class="cute-memory-title">Coffee Date</div>
+                                    <div class="cute-memory-date">April 2024</div>
+                                    <div class="cute-memory-text">Where caffeine met chemistry! ☕💕</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="cute-memory-card" onclick="openModal('./resource/memory-3.jpg', 'Beach adventures together 🏖️')">
+                                <img src="./resource/memory-3.jpg" alt="Memory 3">
+                                <div class="cute-memory-content">
+                                    <div class="cute-memory-title">Beach Dreams</div>
+                                    <div class="cute-memory-date">June 2024</div>
+                                    <div class="cute-memory-text">Footprints in the sand, memories in our hearts! 🏖️</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="cute-memory-card" onclick="openModal('./resource/memory-4.jpg', 'Meadow picnics and sunshine 🌸')">
+                                <img src="./resource/memory-4.jpg" alt="Memory 4">
+                                <div class="cute-memory-content">
+                                    <div class="cute-memory-title">Meadow Magic</div>
+                                    <div class="cute-memory-date">August 2024</div>
+                                    <div class="cute-memory-text">Surrounded by nature's beauty, but you were still the most beautiful sight! 🌸</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="cute-memory-card" onclick="openModal('./resource/memory-5.jpg', 'Cozy fireside moments 🔥')">
+                                <img src="./resource/memory-5.jpg" alt="Memory 5">
+                                <div class="cute-memory-content">
+                                    <div class="cute-memory-title">Fireside Warmth</div>
+                                    <div class="cute-memory-date">October 2024</div>
+                                    <div class="cute-memory-text">Cold days became warm when wrapped in your love! 🔥</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="cute-memory-card" onclick="openModal('./resource/memory-6.jpg', 'Stargazing together ✨')">
+                                <img src="./resource/memory-6.jpg" alt="Memory 6">
+                                <div class="cute-memory-content">
+                                    <div class="cute-memory-title">Starry Nights</div>
+                                    <div class="cute-memory-date">December 2024</div>
+                                    <div class="cute-memory-text">Making wishes on shooting stars together! ✨</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="index.html" class="cute-button">
+                    Back to Birthday Fun 🎂
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cute Footer -->
+    <footer class="cute-footer">
+        <div class="max-w-4xl mx-auto">
+            <div class="quicksand text-xl font-bold mb-4">
+                Made with Love 💕
+            </div>
+            <p class="mb-6">
+                Every day with you is special, but today is extra magical! Happy Birthday!
+            </p>
+            <div class="text-sm opacity-70">
+                © 2024 Cute Birthday Love - Created with ❤️ and lots of hugs
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Photo Modal -->
+    <div id="photoModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+    
+    <script>
+        // Initialize cute timeline animations
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCuteTimeline();
+            initializeCuteCards();
+            initializePhotoSlider();
+        });
+        
+        // Initialize cute timeline animations
+        function initializeCuteTimeline() {
+            const timelineItems = document.querySelectorAll('.cute-timeline-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+        }
+        
+        // Initialize cute memory cards
+        function initializeCuteCards() {
+            const memoryCards = document.querySelectorAll('.cute-memory-card');
+            
+            memoryCards.forEach((card, index) => {
+                // Stagger the initial animation
+                setTimeout(() => {
+                    anime({
+                        targets: card,
+                        opacity: [0, 1],
+                        translateY: [30, 0],
+                        duration: 600,
+                        easing: 'easeOutQuad'
+                    });
+                }, index * 150);
+            });
+        }
+
+        // Initialize photo slider
+        function initializePhotoSlider() {
+            const slider = new Splide('#memoriesSlider', {
+                type: 'loop',
+                perPage: 3,
+                perMove: 1,
+                gap: '1.5rem',
+                autoplay: true,
+                interval: 4000,
+                speed: 600,
+                focus: 'center',
+                pagination: true,
+                arrows: true,
+                breakpoints: {
+                    1024: { perPage: 2 },
+                    768: { perPage: 1 }
+                }
+            });
+            slider.mount();
+        }
+        
+        // Modal functions
+        function openModal(imageSrc, caption) {
+            const modal = document.getElementById('photoModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+            modalCaption.textContent = caption;
+            
+            // Animate modal appearance
+            anime({
+                targets: modal,
+                opacity: [0, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('photoModal');
+            
+            anime({
+                targets: modal,
+                opacity: [1, 0],
+                duration: 300,
+                easing: 'easeOutQuad',
+                complete: function() {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('photoModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Add smooth scrolling for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
