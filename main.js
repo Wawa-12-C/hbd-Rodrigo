@@ -8,6 +8,32 @@ let isPlaying = false;
 let audioElement;
 let memoryCarousel;
 
+const style = documenet.createElement('style');
+style.textContent = `
+    .cake-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+    }
+    .cake-container.active {
+        opacity: 1;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+    .cake-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+`;
+document.head.appendChild(style);
+
 // Birthday wishes array
 const birthdayWishes = [
     "May your day be filled with love, laughter, and endless joy! 💕",
