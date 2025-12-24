@@ -2,13 +2,11 @@
 // Interactive elements and animations
 
 // Global variables
-let candlesBlownOut = 0;
-let totalCandles = 7;
 let isPlaying = false;
 let audioElement;
 let memoryCarousel;
 
-const style = documenet.createElement('style');
+const style = document.createElement('style');
 style.textContent = `
     .cake-container {
         position: absolute;
@@ -64,11 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize cake message
     document.getElementById('candleMessage').style.opacity = '0';
     
-    // Hide candles initially
-    const candles = document.querySelectorAll('.candle');
-    candles.forEach(candle => {
-        candle.style.opacity = '0';
-        candle.style.position = 'absolute';
     });
     
     // Add smooth scrolling
@@ -103,13 +96,14 @@ function initializeCandles() {
     
     if (cakeWithCandles) {
         // Add click event to switch pictures
+        cakewithCandles.style.cursor = 'pointer';
         cakeWithCandles.addEventListener('click', function() {
             startCakeAnimation();
         });
     }
     
     // Initialize message
-    const message = document.getElementById('cakeMessage');
+    const message = document.getElementById('candleMessage') || document.getElementById('cakeMessage');
     if (message) {
         message.style.opacity = '1';
     }
@@ -119,21 +113,21 @@ function initializeCandles() {
 function startCakeAnimation() {
     const cakeWithCandles = document.getElementById('cakeWithCandles');
     const cakeWithoutCandles = document.getElementById('cakeWithoutCandles');
-    const message = document.getElementById('cakeMessage');
     
     if (!cakeWithCandles || !cakeWithoutCandles) return;
     
     // Switch from picture with candles to picture without candles
-    cakeWithCandles.classList.remove('active');
-    cakeWithoutCandles.classList.add('active');
+    cakeWithCandles.style.opacity = '0';
+    cakeWithoutCandles.style.opacity = '1';
     
     // Update message
+    const message = document.getElementById('candleMessage') || document.getElementById('cakeMessage');
     if (message) {
         message.textContent = '🎉 Happy Birthday! Your wish will come true! 🎉';
     }
     
-    // Create celebration effect (keep your existing function)
-    createCelebration();
+    // Create celebration effect 
+    createCelebrationBrust();
     
     // Show pop-up message after delay
     setTimeout(() => {
@@ -168,35 +162,6 @@ function createGrandFinaleConfetti() {
     }
 }
 
-// Play celebration sound
-function playCelebrationSound() {
-    // Simple celebration sound using Web Audio API
-    if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
-        const audioContext = new (AudioContext || webkitAudioContext)();
-        
-        // Create a simple melody
-        const notes = [523.25, 587.33, 659.25, 698.46, 783.99, 880, 987.77]; // C5 to B5
-        
-        notes.forEach((frequency, index) => {
-            setTimeout(() => {
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.value = frequency;
-                oscillator.type = 'sine';
-                
-                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-                
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + 0.3);
-            }, index * 150);
-        });
-    }
-}
 
 // Show special birthday message
 function showSpecialMessage() {
@@ -396,20 +361,6 @@ window.addEventListener('scroll', function() {
     
     if (parallax) {
         parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', function(e) {
-    if (e.key === ' ' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-        e.preventDefault();
-        toggleBirthdaySong();
-    }
-    const cakeWithCandles = document.getElementById('cakeWithCandles');
-    if (cakeWithCandles) {
-        cakeWithCandles.addEventListener('click', function() {
-            startCakeAnimation();
-        });
     }
 });
 
