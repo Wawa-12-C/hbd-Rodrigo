@@ -170,8 +170,22 @@
             transition: all 0.5s ease;
         }
         
-        .cake.base {
-            background-image: url('./resource-cake.jpg');
+        .cake-container-style {
+            width: 280px;
+            height: 320px;
+            margin: 0 auto;
+            background: var(--cloud-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .cake-container-style:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
         
         /* Candles */
@@ -453,18 +467,20 @@
                 Click on the cake to blow out the candles and make your birthday wish come true!
             </p>
             
-            <div class="relative">
-                <!-- Cake with candles (initial state) -->
-                <div id="cakeWithCandles" class="cake-container">
-                    <img src="zucchini-cake-candles.jpg" alt="Birthday Cake with Candles" 
-                         class="w-full h-full object-cover rounded-2xl cursor-pointer">
-                </div>
+            <div class="relative" style="width: 280px; height: 320px; margin: 0 auto;">
+                <!-- First: Cake WITH candles -->
+                <img id="cakeWithCandles" 
+                     src="zucchini-cake-candles.jpg" 
+                     alt="Birthday Cake with Candles" 
+                     class="absolute w-full h-full object-cover rounded-2xl cursor-pointer"
+                     style="opacity: 1; transition: opacity 0.8s ease;">
                 
-                <!-- Cake without candles (hidden initially) -->
-                <div id="cakeWithoutCandles" class="cake-container">
-                    <img src="zucchini-cake.jpg" alt="Birthday Cake" 
-                         class="w-full h-full object-cover rounded-2xl">
-                </div>
+                <!-- Second: Cake WITHOUT candles -->
+                <img id="cakeWithoutCandles" 
+                     src="zucchini-cake.jpg" 
+                     alt="Birthday Cake" 
+                     class="absolute w-full h-full object-cover rounded-2xl"
+                     style="opacity: 0; transition: opacity 0.8s ease;">
             </div>
             
             <div class="text-center mt-6">
