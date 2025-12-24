@@ -1,11 +1,12 @@
-// Birthday website main 
-// Focused on cake interaction
+// Birthday Website Main JavaScript
+// Interactive elements and animations
 
 // Global variables
+let candlesBlownOut = 0;
+let totalCandles = 7;
 let isPlaying = false;
 let audioElement;
 let memoryCarousel;
-let cakeCandlesBlown = false;
 
 // Birthday wishes array
 const birthdayWishes = [
@@ -28,174 +29,173 @@ const birthdayWishes = [
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    initializeParticles();
+    initializeCandles();
     initializeCarousel();
     initializeAudio();
     createFloatingParticles();
     
     // Initialize cake message
-    const cakeMessage = document.getElementById('cakeMessage');
-    if (cakeMessage) {
-        cakeMessage.style.opacity = '1';
-        cakeMessage.textContent = '🎂 Click the cake to make a wish! 🎂';
-    }
+    document.getElementById('candleMessage').style.opacity = '0';
+    
+    // Hide candles initially
+    const candles = document.querySelectorAll('.candle');
+    candles.forEach(candle => {
+        candle.style.opacity = '0';
+        candle.style.position = 'absolute';
+    });
     
     // Add smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const href = this.getAttribute('href');
-            if (href !== '#') {
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            }
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
 });
 
 // Create floating particles effect
 function createFloatingParticles() {
-    const container = document.getElementById('floaters') || document.getElementById('particles-container');
-    if (!container) return;
+    const container = document.getElementById('particles-container');
     
-    const elements = ['💖', '✨', '🌟', '💕', '🎈'];
-    
-    setInterval(() => {
-        if (Math.random() > 0.7) {
-            const particle = document.createElement('div');
-            particle.className = 'float';
-            particle.textContent = elements[Math.floor(Math.random() * elements.length)];
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = '100%';
-            particle.style.animationDelay = Math.random() * 2 + 's';
-            container.appendChild(particle);
-            
-            // Animate the particle
-            particle.animate([
-                { transform: 'translateY(0px) rotate(0deg)', opacity: 0.7 },
-                { transform: `translateY(-${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-            ], {
-                duration: 8000,
-                easing: 'linear'
-            }).onfinish = () => particle.remove();
-        }
-    }, 2000);
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+        container.appendChild(particle);
+    }
 }
 
-// Blow out candles from the cake picture
-function blowOutCandles() {
-    if (cakeCandlesBlown) return; // Prevent multiple clicks
+// Initialize candle interactions
+function initializeCandles() {
+    const cakeWithCandles = document.getElementById('cakeWithCandles');
     
-    cakeCandlesBlown = true;
-    const cakeContainer = document.getElementById('cakeWithCandles');
-    const cakeWithoutCandles = document.getElementById('cakeWithoutCandles');
+    if (cakeWithCandles) {
+        // Add click event to switch pictures
+        cakeWithCandles.addEventListener('click', function() {
+            startCakeAnimation();
+        });
+    }
+    
+    // Initialize message
     const message = document.getElementById('cakeMessage');
-    const wishMessage = document.getElementById('wishMessage');
-    
-    if (!cakeContainer || !cakeWithoutCandles) return;
-    
-    // Animate the transition from cake with candles to cake without candles
-    anime({
-        targets: cakeContainer,
-        opacity: 0,
-        scale: 0.95,
-        duration: 800,
-        easing: 'easeInOutQuad'
-    });
-    
-    anime({
-        targets: cakeWithoutCandles,
-        opacity: 1,
-        scale: 1,
-        duration: 800,
-        delay: 400,
-        easing: 'easeInOutQuad'
-    });
-    
-    // Update messages
     if (message) {
-        message.textContent = '🎉 Happy Birthday! Your wish will come true! 🎉';
         message.style.opacity = '1';
     }
-    
-    if (wishMessage) {
-        wishMessage.innerHTML = '<span class="text-coral-pink font-bold">🎂 Wishes granted! Enjoy your special day! 🎂</span>';
-    }
-    
-    // Create celebration effect
-    createCelebration();
-    
-    // Show special wish after delay
-    setTimeout(() => {
-        showBirthdayWish();
-    }, 1500);
 }
 
-// Create celebration effect
-function createCelebration() {
-    const colors = ['#FFF3B0', '#FFE066', '#FFD275', '#FFF8DC'];
+// Start cake animation sequence
+function startCakeAnimation() {
+    const cakeWithCandles = document.getElementById('cakeWithCandles');
+    const cakeWithoutCandles = document.getElementById('cakeWithoutCandles');
+    const message = document.getElementById('cakeMessage');
     
-    for (let i = 0; i < 30; i++) {
+    if (!cakeWithCandles || !cakeWithoutCandles) return;
+    
+    // Switch from picture with candles to picture without candles
+    cakeWithCandles.classList.remove('active');
+    cakeWithoutCandles.classList.add('active');
+    
+    // Update message
+    if (message) {
+        message.textContent = '🎉 Happy Birthday! Your wish will come true! 🎉';
+    }
+    
+    // Create celebration effect (keep your existing function)
+    createCelebration();
+    
+    // Show pop-up message after delay
+    setTimeout(() => {
+        showSpecialMessage();
+    }, 1000);
+}
+
+
+// Celebration when all candles are blown out
+function celebrateAllCandlesOut() {
+    startCakeAnimation();
+}
+
+// Create grand finale confetti
+function createGrandFinaleConfetti() {
+    const colors = ['#FFD700', '#E8B4B8', '#F7E7CE', '#A8B5A0', '#F4C2C2'];
+    
+    for (let i = 0; i < 50; i++) {
         setTimeout(() => {
             const confetti = document.createElement('div');
-            confetti.style.position = 'fixed';
+            confetti.className = 'confetti';
             confetti.style.left = Math.random() * window.innerWidth + 'px';
             confetti.style.top = '-10px';
-            confetti.style.width = '8px';
-            confetti.style.height = '8px';
             confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.borderRadius = '50%';
-            confetti.style.pointerEvents = 'none';
-            confetti.style.zIndex = '9999';
-            
+            confetti.style.animationDelay = Math.random() * 2 + 's';
             document.body.appendChild(confetti);
             
-            anime({
-                targets: confetti,
-                translateY: window.innerHeight + 100,
-                translateX: (Math.random() - 0.5) * 200,
-                rotate: Math.random() * 360,
-                opacity: [1, 0],
-                duration: 2500,
-                easing: 'easeOutQuad',
-                complete: function() {
-                    confetti.remove();
-                }
-            });
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
         }, i * 100);
     }
 }
 
-// Show birthday wish
-function showBirthdayWish() {
-    const randomWish = birthdayWishes[Math.floor(Math.random() * birthdayWishes.length)];
-    
+// Play celebration sound
+function playCelebrationSound() {
+    // Simple celebration sound using Web Audio API
+    if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
+        const audioContext = new (AudioContext || webkitAudioContext)();
+        
+        // Create a simple melody
+        const notes = [523.25, 587.33, 659.25, 698.46, 783.99, 880, 987.77]; // C5 to B5
+        
+        notes.forEach((frequency, index) => {
+            setTimeout(() => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = frequency;
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            }, index * 150);
+        });
+    }
+}
+
+// Show special birthday message
+function showSpecialMessage() {
     const specialMessage = document.createElement('div');
     specialMessage.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50';
     specialMessage.innerHTML = `
-        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center transform scale-0" id="specialBox">
-            <div class="text-6xl mb-4">✨</div>
-            <h2 class="quicksand text-3xl font-bold text-coral-pink mb-4">Your Birthday Wish! 🌟</h2>
-            <p class="comfortaa text-lg text-charcoal-gray mb-6">
-                ${randomWish}
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center transform scale-0" id="specialMessageBox">
+            <div class="text-6xl mb-4">🎂</div>
+            <h2 class="playfair text-3xl font-bold text-burgundy mb-4">Happy Birthday!</h2>
+            <p class="dancing text-xl text-charcoal mb-6">
+                You are my greatest adventure, my deepest love, and my favorite person. 
+                Every day with you is a celebration, but today is all about you!
             </p>
-            <button onclick="closeSpecialMessage()" class="button">
-                Thank You! 💖
+            <button onclick="closeSpecialMessage()" class="bg-gradient-to-r from-rose-gold to-blush-pink text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                I Love You! 💕
             </button>
         </div>
     `;
     
     document.body.appendChild(specialMessage);
     
+    // Animate the message box
     setTimeout(() => {
-        const specialBox = document.getElementById('specialBox');
-        if (specialBox) {
-            specialBox.classList.remove('scale-0');
-            specialBox.classList.add('scale-100');
-        }
+        document.getElementById('specialMessageBox').classList.remove('scale-0');
+        document.getElementById('specialMessageBox').classList.add('scale-100');
     }, 100);
 }
 
@@ -209,146 +209,205 @@ function closeSpecialMessage() {
 
 // Initialize memory carousel
 function initializeCarousel() {
-    const carouselElement = document.getElementById('carousel') || document.getElementById('memoryCarousel');
-    if (carouselElement) {
-        memoryCarousel = new Splide(carouselElement, {
-            type: 'loop',
-            perPage: 3,
-            perMove: 1,
-            gap: '1.5rem',
-            autoplay: true,
-            interval: 4000,
-            speed: 650,
-            focus: 'center',
-            pauseOnHover: true,
-            breakpoints: {
-                768: { perPage: 1 },
-                1024: { perPage: 2 }
+    memoryCarousel = new Splide('#memoryCarousel', {
+        type: 'loop',
+        perPage: 3,
+        perMove: 1,
+        gap: '2rem',
+        autoplay: true,
+        interval: 4000,
+        pauseOnHover: true,
+        breakpoints: {
+            768: {
+                perPage: 1,
+            },
+            1024: {
+                perPage: 2,
             }
-        });
-        memoryCarousel.mount();
-    }
+        }
+    });
+    
+    memoryCarousel.mount();
 }
 
 // Initialize audio player
 function initializeAudio() {
-    audioElement = document.getElementById('audio') || document.getElementById('birthdayAudio');
+    audioElement = document.getElementById('birthdayAudio');
     
-    if (audioElement) {
-        audioElement.addEventListener('timeupdate', function() {
-            const progress = (this.currentTime / this.duration) * 100;
-            const progressBar = document.getElementById('progressBar');
-            if (progressBar) {
-                progressBar.style.width = progress + '%';
-            }
-            
-            const currentTime = document.getElementById('currentTime');
-            if (currentTime) {
-                const minutes = Math.floor(this.currentTime / 60);
-                const seconds = Math.floor(this.currentTime % 60);
-                currentTime.textContent = 
-                    minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-            }
-        });
+    audioElement.addEventListener('timeupdate', function() {
+        const progress = (this.currentTime / this.duration) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
         
-        audioElement.addEventListener('ended', function() {
-            isPlaying = false;
-            const playIcon = document.getElementById('playIcon');
-            if (playIcon) {
-                playIcon.textContent = '▶️';
-            }
-        });
-    }
+        const minutes = Math.floor(this.currentTime / 60);
+        const seconds = Math.floor(this.currentTime % 60);
+        document.getElementById('currentTime').textContent = 
+            minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    });
+    
+    audioElement.addEventListener('ended', function() {
+        isPlaying = false;
+        document.getElementById('playIcon').textContent = '▶️';
+    });
 }
 
 // Toggle birthday song
-function toggleSong() {
+function toggleBirthdaySong() {
     if (!audioElement) return;
     
     if (isPlaying) {
         audioElement.pause();
-        const playIcon = document.getElementById('playIcon');
-        if (playIcon) {
-            playIcon.textContent = '▶️';
-        }
+        document.getElementById('playIcon').textContent = '▶️';
     } else {
         audioElement.play();
-        const playIcon = document.getElementById('playIcon');
-        if (playIcon) {
-            playIcon.textContent = '⏸️';
-        }
+        document.getElementById('playIcon').textContent = '⏸️';
     }
     
     isPlaying = !isPlaying;
 }
 
 // Play birthday song directly
-function playSong() {
+function playBirthdaySong() {
     if (audioElement) {
         audioElement.play();
         isPlaying = true;
-        const playIcon = document.getElementById('playIcon');
-        if (playIcon) {
-            playIcon.textContent = '⏸️';
-        }
+        document.getElementById('playIcon').textContent = '⏸️';
     }
 }
 
-// Generate random birthday wish for wish fountain
+// Generate random birthday wish
 function generateWish() {
     const wishDisplay = document.getElementById('wishDisplay');
-    if (!wishDisplay) return;
-    
     const randomWish = birthdayWishes[Math.floor(Math.random() * birthdayWishes.length)];
     
-    // Animate fountain
+    // Create floating wish element
+    const floatingWish = document.createElement('div');
+    floatingWish.className = 'floating-wish';
+    floatingWish.textContent = randomWish;
+    
+    wishDisplay.appendChild(floatingWish);
+    
+    // Animate the wish
     anime({
-        targets: '.fountain',
+        targets: floatingWish,
+        translateY: -100,
+        opacity: [1, 0],
+        scale: [1, 0.8],
+        duration: 4000,
+        easing: 'easeOutQuad',
+        complete: function() {
+            floatingWish.remove();
+        }
+    });
+    
+    // Update display
+    setTimeout(() => {
+        wishDisplay.innerHTML = `<p class="dancing text-xl text-burgundy font-semibold">${randomWish}</p>`;
+    }, 500);
+    
+    // Animate wish well
+    anime({
+        targets: '.wish-well',
         scale: [1, 1.1, 1],
         duration: 600,
         easing: 'easeInOutQuad'
     });
-    
-    // Update display with animation
-    wishDisplay.innerHTML = `
-        <div class="comfortaa text-xl text-coral-pink font-semibold animate-bounce">${randomWish}</div>
-    `;
-    
-    // Create celebration
-    createCelebration();
 }
 
 // Start celebration function
 function startCelebration() {
     // Scroll to cake section
-    const cakeSection = document.querySelector('#birthdayCake') || document.querySelector('.cake-section');
-    if (cakeSection) {
-        cakeSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-    }
+    document.querySelector('#birthdayCake').scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
     
-    // Create celebration burst
-    createCelebration();
+    // Add some celebration effects
+    createCelebrationBurst();
     
-    // Play song
+    // Play birthday song
     setTimeout(() => {
-        playSong();
+        playBirthdaySong();
     }, 1000);
 }
 
-// Start cake animation (compatibility function)
-function startCakeAnimation() {
-    blowOutCandles();
+// Create celebration burst effect
+function createCelebrationBurst() {
+    const colors = ['#FFD700', '#E8B4B8', '#F7E7CE', '#A8B5A0', '#F4C2C2'];
+    
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'confetti';
+        particle.style.left = Math.random() * window.innerWidth + 'px';
+        particle.style.top = Math.random() * window.innerHeight + 'px';
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+            particle.remove();
+        }, 3000);
+    }
 }
 
-// Simple error handling
-window.addEventListener('error', function(e) {
-    console.error('Script error:', e.message, 'at', e.filename, ':', e.lineno);
+// Initialize particles system
+function initializeParticles() {
+    // This could be enhanced with Matter.js for more complex physics
+    // For now, we'll use CSS animations for simplicity
+}
+
+// Smooth scroll function for navigation
+function smoothScrollTo(element) {
+    element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+}
+
+// Add scroll-triggered animations
+window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector('.aurora-bg');
+    
+    if (parallax) {
+        parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
 });
 
-// Performance optimization
+
+document.addEventListener('DOMContentLoaded', function(e) {
+    if (e.key === ' ' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        toggleBirthdaySong();
+    }
+    const cakeWithCandles = document.getElementById('cakeWithCandles');
+    if (cakeWithCandles) {
+        cakeWithCandles.addEventListener('click', function() {
+            startCakeAnimation();
+        });
+    }
+});
+
+// Add touch support for mobile
+if ('ontouchstart' in window) {
+    document.addEventListener('touchstart', function(e) {
+        // Add touch feedback for interactive elements
+        if (e.target.classList.contains('candle') || 
+            e.target.classList.contains('play-button') ||
+            e.target.classList.contains('wish-well')) {
+            e.target.style.transform = 'scale(0.95)';
+        }
+    });
+    
+    document.addEventListener('touchend', function(e) {
+        if (e.target.classList.contains('candle') || 
+            e.target.classList.contains('play-button') ||
+            e.target.classList.contains('wish-well')) {
+            e.target.style.transform = 'scale(1)';
+        }
+    });
+}
+
+// Performance optimization: Debounce scroll events
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -361,8 +420,50 @@ function debounce(func, wait) {
     };
 }
 
-// Add resize handler
+// Apply debouncing to scroll events
+const debouncedScrollHandler = debounce(function() {
+    // Scroll-based animations can be added here
+}, 100);
+
+window.addEventListener('scroll', debouncedScrollHandler);
+
+// Add loading animation
+window.addEventListener('load', function() {
+    // Fade in the page content
+    anime({
+        targets: 'body',
+        opacity: [0, 1],
+        duration: 1000,
+        easing: 'easeOutQuad'
+    });
+    
+    // Animate hero elements
+    anime({
+        targets: '.typewriter',
+        opacity: [0, 1],
+        translateY: [50, 0],
+        duration: 1500,
+        delay: 500,
+        easing: 'easeOutQuad'
+    });
+});
+
+// Error handling for audio
+if (audioElement) {
+    audioElement.addEventListener('error', function(e) {
+        console.log('Audio loading error:', e);
+        // Fallback: show message that audio couldn't load
+        const playButton = document.getElementById('playButton');
+        if (playButton) {
+            playButton.title = 'Audio not available';
+            playButton.style.opacity = '0.5';
+        }
+    });
+}
+
+// Add resize handler for responsive adjustments
 window.addEventListener('resize', debounce(function() {
+    // Recalculate positions if needed
     if (memoryCarousel) {
         memoryCarousel.refresh();
     }
@@ -370,9 +471,7 @@ window.addEventListener('resize', debounce(function() {
 
 // Export functions for global access
 window.startCelebration = startCelebration;
-window.playSong = playSong;
-window.toggleSong = toggleSong;
-window.blowOutCandles = blowOutCandles;
+window.playBirthdaySong = playBirthdaySong;
+window.toggleBirthdaySong = toggleBirthdaySong;
 window.generateWish = generateWish;
 window.closeSpecialMessage = closeSpecialMessage;
-window.startCakeAnimation = startCakeAnimation;
