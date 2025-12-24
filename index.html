@@ -450,28 +450,30 @@
                 Make a Wish! ✨
             </h2>
             <p class="text-charcoal-gray mb-8 max-w-2xl mx-auto">
-                Click on this adorable cake to watch it come to life, then blow out the candles 
-                by clicking on each one. Your birthday magic awaits!
+                Click on the cake to blow out the candles and make your birthday wish come true!
             </p>
             
-            <div class="cake-container" id="birthdayCake" onclick="startCakeAnimation()">
-                <div class="cake base" id="cake"></div>
-                <!-- Candles will be positioned by JavaScript -->
-                <div class="candle" style="top: 15px; left: 60px;" data-candle="1"></div>
-                <div class="candle" style="top: 12px; left: 85px;" data-candle="2"></div>
-                <div class="candle" style="top: 18px; left: 110px;" data-candle="3"></div>
-                <div class="candle" style="top: 14px; left: 135px;" data-candle="4"></div>
-                <div class="candle" style="top: 16px; left: 160px;" data-candle="5"></div>
-                <div class="candle" style="top: 13px; left: 185px;" data-candle="6"></div>
-                <div class="candle" style="top: 17px; left: 210px;" data-candle="7"></div>
+            <div class="relative">
+                <!-- Cake with candles (initial state) -->
+                <div id="cakeWithCandles" class="cake-container">
+                    <img src="zucchini-cake-candles.jpg" alt="Birthday Cake with Candles" 
+                         class="w-full h-full object-cover rounded-2xl cursor-pointer" 
+                         onclick="blowOutCandles()">
+                </div>
+                
+                <!-- Cake without candles (hidden initially) -->
+                <div id="cakeWithoutCandles" class="cake-container opacity-0 absolute top-0 left-0">
+                    <img src="zucchini-cake.jpg" alt="Birthday Cake" 
+                         class="w-full h-full object-cover rounded-2xl">
+                </div>
             </div>
             
             <div class="text-center mt-6">
-                <div id="candleMessage" class="comfortaa text-lg text-coral-pink mb-4 opacity-0 transition-opacity duration-500">
-                    🎂 Click the cake to start the magic! 🎂
+                <div id="cakeMessage" class="comfortaa text-lg text-coral-pink mb-4 opacity-0 transition-opacity duration-500">
+                    🎂 Click the cake to blow out candles! 🎂
                 </div>
-                <div class="text-sm text-charcoal-gray/70">
-                    Candles remaining: <span id="candleCount" class="font-bold text-pastel-pink">7</span>
+                <div class="text-sm text-charcoal-gray/70" id="wishMessage">
+                    Make a wish and click the cake!
                 </div>
             </div>
         </div>
