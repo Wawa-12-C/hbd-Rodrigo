@@ -7,21 +7,19 @@ let audioElement;
 
 // Birthday wishes array
 const birthdayWishes = [
-    "May your day be filled with love, laughter, and endless joy! 💕",
-    "You make every day brighter just by being in it. Happy Birthday! ☀️",
-    "Here's to another year of amazing adventures together! 🌟",
-    "You're not just my love, you're my best friend and greatest blessing. 🙏",
-    "May all your dreams come true, today and always! ✨",
-    "You deserve all the happiness in the world and more! 🌈",
-    "Every moment with you is a gift I treasure forever. 💝",
-    "You're the reason my world is so beautiful and bright! 🌹",
-    "May this year bring you closer to all your heart desires! ❤️",
-    "You make my life complete in every possible way! 💖",
-    "Here's to celebrating the most wonderful person I know! 🎊",
-    "Your smile lights up my world like nothing else can! 😊",
-    "May your birthday be as special as you are to me! 🎂",
-    "You're my favorite notification, my favorite person, my everything! 📱",
-    "Today we celebrate the day the world became brighter with you in it! 🌟"
+    "May your birthday be filled with endless joy, love, and all the things that make you smile! 😊",
+    "You deserve all the happiness in the world and more! Sending you the biggest birthday hugs! ",
+    "Warning: This birthday message may cause extreme cuteness, sudden smiles, and intense missing of your huggy girlfriend",
+    "My birthday wish? To teleport to you for just one hug! 🤩",
+    "I wish you could see yourself through my eyes -- you'd see a man worthy of every good thing 😘",
+    "I wish I could be the one to hand you your cake and celebrate with you in person! 🎂",
+    "You're not just my love, you're my best friend and favorite person. Happy Birthday 宝贝! ",
+    "Happy Birthday to my favorite notification! Getting a message from you always makes my day ",
+    "Important Birthday Poll: Which is sweeter? a) Your cake, b) Your smiles, or c) Me?",
+    "I wish you have good vibes, awesome food, and the perfect playlist",
+    "Happy Birthday! According to my calculations, the birthday boy owes me ∞ kisses 😘",
+    "Happy Birthday to the boy who has my whole heart! I'm sending you all my love today and always. ❤️",
+    "Happy Birthday. My main wish is that you don't get sick, you're not too tired, and nothing annoys you. Just a smooth, good day. That would make me happy."
 ];
 
 // Initialize everything when DOM is loaded
