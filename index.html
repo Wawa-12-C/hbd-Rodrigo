@@ -182,7 +182,7 @@
             transition: all 0.4s ease;
             position: relative;
         }
-        
+
         .cake-container-style:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
@@ -407,6 +407,63 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--coral-pink);
         }
+
+        /* Confetti Styles */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: confetti-fall 3s ease-in-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 20px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 200, 87, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particle-float 8s infinite ease-in-out;
+        }
+
+        @keyframes particle-float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.8;
+            }
+        }
+
+        /* Floating Wish Animation */
+        .floating-wish {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            white-space: nowrap;
+            font-weight: 500;
+            color: var(--coral-pink);
+        }
     </style>
 </head>
 <body>
@@ -450,7 +507,7 @@
                 <button onclick="startCelebration()" class="button">
                     Start Celebration! 🎂
                 </button>
-                <button onclick="playSong()" class="button">
+                <button onclick="playBirthdaySong()" class="button">
                     Play Song 🎵
                 </button>
             </div>
@@ -461,13 +518,13 @@
     <section class="cake-section">
         <div class="max-w-4xl mx-auto">
             <h2 class="quicksand text-3xl font-bold text-coral-pink mb-4">
-                Make a Wish! ✨
+                Homemade zucchini cake! ✨
             </h2>
             <p class="text-charcoal-gray mb-8 max-w-2xl mx-auto">
-                Click on the cake to blow out the candles and make your birthday wish come true!
+                Click the button below to blow out the candles and make your birthday wish come true!
             </p>
             
-            <div class="relative" style="width: 280px; height: 320px; margin: 0 auto;">
+            <div class="relative" style="width: 360px; height: 240px; margin: 0 auto;">
                 <!-- First: Cake WITH candles -->
                 <img id="cakeWithCandles" 
                      src="zucchini-cake-candles.jpg" 
@@ -484,11 +541,8 @@
             </div>
             
             <div class="text-center mt-6">
-                <div id="cakeMessage" class="comfortaa text-lg text-coral-pink mb-4">
-                    🎂 Click the cake to blow out candles! 🎂
-                </div>
-                <div class="text-sm text-charcoal-gray/70">
-                    Make a wish and click the cake!
+                <div id="candleMessage" class="comfortaa text-lg text-coral-pink mb-4 opacity-0 transition-opacity duration-500">
+                    🎂 Click the button to blow out the candles! 🎂
                 </div>
             </div>
         </div>
@@ -554,61 +608,61 @@
                     <ul class="splide__list">
                         <li class="splide__slide">
                             <div class="memory-card">
-                                <img src="./resource/memory-1.jpg" alt="Memory 1">
+                                <img src="memory-1.jpg" alt="Memory 1">
                                 <div class="memory-content">
-                                    <div class="memory-title">First Meeting</div>
-                                    <div class="memory-date">March 2024</div>
-                                    <div class="memory-text">The day our worlds collided and everything changed! 💕</div>
+                                    <div class="memory-title">Celebrating your birthday</div>
+                                    <div class="memory-date">28 December 2024</div>
+                                    <div class="memory-text">Invited to buffet dinner and karaoke party with you </div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
                             <div class="memory-card">
-                                <img src="./resource/memory-2.jpg" alt="Memory 2">
+                                <img src="memory-2.jpg" alt="Memory 2">
                                 <div class="memory-content">
-                                    <div class="memory-title">Coffee Date</div>
-                                    <div class="memory-date">April 2024</div>
-                                    <div class="memory-text">Where caffeine met chemistry! ☕💕</div>
+                                    <div class="memory-title">First lake date</div>
+                                    <div class="memory-date">18 January 2025</div>
+                                    <div class="memory-text">Just knocked the door and everything started 💕</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
                             <div class="memory-card">
-                                <img src="./resource/memory-3.jpg" alt="Memory 3">
+                                <img src="memory-3.jpg" alt="Memory 3">
                                 <div class="memory-content">
-                                    <div class="memory-title">Beach Adventure</div>
-                                    <div class="memory-date">June 2024</div>
-                                    <div class="memory-text">Footprints in the sand, memories in our hearts! 🏖️</div>
+                                    <div class="memory-title">Birthday gift surprise from you</div>
+                                    <div class="memory-date">12 February 2025</div>
+                                    <div class="memory-text">First time you surprised me with a box of Lego! 💝</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
                             <div class="memory-card">
-                                <img src="./resource/memory-4.jpg" alt="Memory 4">
+                                <img src="memory-4.jpg" alt="Memory 4">
                                 <div class="memory-content">
-                                    <div class="memory-title">Meadow Picnic</div>
-                                    <div class="memory-date">August 2024</div>
-                                    <div class="memory-text">Surrounded by nature's beauty, but you were still the most beautiful sight! 🌸</div>
+                                    <div class="memory-title">So many video call dates</div>
+                                    <div class="memory-date">January - August 2025</div>
+                                    <div class="memory-text">Enjoy every moments of our movies, eating, and talking dating</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
                             <div class="memory-card">
-                                <img src="./resource/memory-5.jpg" alt="Memory 5">
+                                <img src="memory-5.jpg" alt="Memory 5">
                                 <div class="memory-content">
-                                    <div class="memory-title">Cozy Fireside</div>
-                                    <div class="memory-date">October 2024</div>
-                                    <div class="memory-text">Cold days became warm when wrapped in your love! 🔥</div>
+                                    <div class="memory-title">Welcome to my homeland</div>
+                                    <div class="memory-date">13 - 29 August 2025</div>
+                                    <div class="memory-text">First time you visited Thailand and dating, traveling together</div>
                                 </div>
                             </div>
                         </li>
                         <li class="splide__slide">
                             <div class="memory-card">
-                                <img src="./resource/memory-6.jpg" alt="Memory 6">
+                                <img src="memory-6.jpg" alt="Memory 6">
                                 <div class="memory-content">
-                                    <div class="memory-title">Under the Stars</div>
-                                    <div class="memory-date">December 2024</div>
-                                    <div class="memory-text">Making wishes on shooting stars together! ✨</div>
+                                    <div class="memory-title">Our long distance time come back</div>
+                                    <div class="memory-date">August 2025 - Future</div>
+                                    <div class="memory-text">Looking forward to the day we can be together again</div>
                                 </div>
                             </div>
                         </li>
@@ -672,369 +726,94 @@
     <!-- Floating Elements -->
     <div id="floaters"></div>
     
+    <script src="main.js"></script>
+
     <script>
-        // JavaScript for interactions
-        let candlesBlown = 0;
-        let totalCandles = 7;
-        let isPlaying = false;
-        let audio;
-        let carousel;
-        
-        // birthday wishes
-        const wishes = [
-            "May your birthday be filled with endless joy, love, and all the things that make you smile! 😊",
-            "You deserve all the happiness in the world and more! Sending you the biggest birthday hugs! ",
-            "Warning: This birthday message may cause extreme cuteness, sudden smiles, and intense missing of your huggy girlfriend",
-            "My birthday wish? To teleport to you for just one hug! 🤩",
-            "I wish you could see yourself through my eyes -- you'd see a man worthy of every good thing 😘",
-            "I wish I could be the one to hand you your cake and celebrate with you in person! 🎂",
-            "You're not just my love, you're my best friend and favorite person. Happy Birthday 宝贝! ",
-            "Happy Birthday to my favorite notification! Getting a message from you always makes my day ",
-            "Important Birthday Poll: Which is sweeter? a) Your cake, b) Your smiles, or c) Me?",
-            "I wish you have good vibes, awesome food, and the perfect playlist",
-            "Happy Birthday! According to my calculations, the birthday boy owes me ∞ kisses 😘",
-            "Happy Birthday to the boy who has my whole heart! I'm sending you all my love today and always. ❤️",
-            "Happy Birthday. My main wish is that you don't get sick, you're not too tired, and nothing annoys you. Just a smooth, good day. That would make me happy."
-        ];
-        
-        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
-            initializeElements();
-            initializeCarousel();
-            initializeAudio();
-            createFloaters();
-        });
-        
-        // Initialize elements
-        function initializeElements() {
-            // Hide candles initially
-            const candles = document.querySelectorAll('.candle');
-            candles.forEach(candle => {
-                candle.style.opacity = '0';
-            });
+            console.log('Page loaded - backup script running');
             
-            // Initialize message
-            document.getElementById('candleMessage').style.opacity = '0';
-            
-            // Add candle click listeners
-            candles.forEach((candle, index) => {
-                candle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    if (!this.classList.contains('blowout')) {
-                        blowOutCandle(this, index);
-                    }
-                });
-            });
-        }
-        
-        // Start cake animation
-        function startCakeAnimation() {
-            const cake = document.getElementById('birthdayCake');
-            const message = document.getElementById('candleMessage');
-            
-            // Animate cake
-            anime({
-                targets: cake,
-                scale: [1, 1.05, 1],
-                rotate: [0, 2, -2, 0],
-                duration: 1000,
-                easing: 'easeInOutQuad'
-            });
-            
-            // Show candles
-            const candles = document.querySelectorAll('.candle');
-            candles.forEach((candle, index) => {
-                setTimeout(() => {
-                    candle.style.opacity = '1';
-                    anime({
-                        targets: candle,
-                        scale: [0, 1],
-                        duration: 500,
-                        easing: 'easeOutBack'
-                    });
-                }, index * 150);
-            });
-            
-            // Update message
-            setTimeout(() => {
-                message.textContent = '🎂 Your cake is ready! Blow out the candles! 🎂';
-                message.style.opacity = '1';
-            }, 800);
-        }
-        
-        // Blow out candle
-        function blowOutCandle(candle, index) {
-            candle.classList.add('blowout');
-            candlesBlown++;
-            
-            // Update count
-            document.getElementById('candleCount').textContent = totalCandles - candlesBlown;
-            
-            // celebration
-            createConfetti(candle);
-            
-            // Check if all candles are blown
-            if (candlesBlown === totalCandles) {
-                setTimeout(() => {
-                    celebrateAllCandles();
-                }, 1000);
-            }
-        }
-        
-        // Celebrate all candles
-        function celebrateAllCandles() {
-            const message = document.getElementById('candleMessage');
-            
-            message.textContent = '🎉 All candles blown out! Happy Birthday! 🎉';
-            message.style.opacity = '1';
-            
-            // celebration effect
-            createCelebration();
-            
-            // Show special message
-            setTimeout(() => {
-                showSpecialMessage();
-            }, 2000);
-        }
-        
-        // Create confetti
-        function createConfetti(element) {
-            const colors = ['#FFF3B0', '#FFE066', '#FFD275', '#FFF8DC'];
-            
-            for (let i = 0; i < 10; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.position = 'fixed';
-                confetti.style.left = Math.random() * window.innerWidth + 'px';
-                confetti.style.top = '-10px';
-                confetti.style.width = '6px';
-                confetti.style.height = '6px';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.borderRadius = '50%';
-                confetti.style.pointerEvents = 'none';
-                confetti.style.zIndex = '9999';
-                
-                document.body.appendChild(confetti);
-                
-                anime({
-                    targets: confetti,
-                    translateY: window.innerHeight + 100,
-                    translateX: (Math.random() - 0.5) * 150,
-                    rotate: Math.random() * 360,
-                    opacity: [1, 0],
-                    duration: 3000,
-                    easing: 'easeOutQuad',
-                    complete: function() {
-                        confetti.remove();
-                    }
-                });
-            }
-        }
-        
-        // Create celebration
-        function createCelebration() {
-            const colors = ['#FFF3B0', '#FFE066', '#FFD275', '#FFF8DC'];
-            
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.style.position = 'fixed';
-                    confetti.style.left = Math.random() * window.innerWidth + 'px';
-                    confetti.style.top = '-10px';
-                    confetti.style.width = '8px';
-                    confetti.style.height = '8px';
-                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.borderRadius = '50%';
-                    confetti.style.pointerEvents = 'none';
-                    confetti.style.zIndex = '9999';
+            // If blow candles button doesn't exist, create it
+            setTimeout(function() {
+                if (!document.getElementById('blowCandlesBtn')) {
+                    console.log('Creating backup blow candles button');
                     
-                    document.body.appendChild(confetti);
+                    const button = document.createElement('button');
+                    button.id = 'blowCandlesBtn';
+                    button.innerHTML = '🎂 Blow Out Candles! 🎂';
+                    button.style.cssText = `
+                        background: linear-gradient(135deg, #FFC857, #FFE066);
+                        color: #4A4A4A;
+                        border: none;
+                        padding: 15px 30px;
+                        border-radius: 25px;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                        cursor: pointer;
+                        margin: 20px auto;
+                        display: block;
+                        box-shadow: 0 6px 20px rgba(255, 200, 87, 0.3);
+                        transition: all 0.3s ease;
+                    `;
                     
-                    anime({
-                        targets: confetti,
-                        translateY: window.innerHeight + 100,
-                        translateX: (Math.random() - 0.5) * 200,
-                        rotate: Math.random() * 360,
-                        opacity: [1, 0],
-                        duration: 2500,
-                        easing: 'easeOutQuad',
-                        complete: function() {
-                            confetti.remove();
+                    button.onclick = function() {
+                        console.log('Backup button clicked');
+                        
+                        const cakeWith = document.getElementById('cakeWithCandles');
+                        const cakeWithout = document.getElementById('cakeWithoutCandles');
+                        const message = document.getElementById('candleMessage');
+                        
+                        if (cakeWith && cakeWithout) {
+                            cakeWith.style.opacity = '0';
+                            cakeWithout.style.opacity = '1';
+                            
+                            if (message) {
+                                message.textContent = '🎉 Happy Birthday! Your wish will come true! 🎉';
+                                message.style.opacity = '1';
+                            }
+                            
+                            // Simple confetti
+                            for (let i = 0; i < 10; i++) {
+                                const dot = document.createElement('div');
+                                dot.style.cssText = `
+                                    position: fixed;
+                                    left: ${Math.random() * 100}%;
+                                    top: ${Math.random() * 100}%;
+                                    width: 8px;
+                                    height: 8px;
+                                    background: #FFC857;
+                                    border-radius: 50%;
+                                    z-index: 9999;
+                                `;
+                                document.body.appendChild(dot);
+                                setTimeout(() => dot.remove(), 2000);
+                            }
+                            
+                            // Play audio
+                            const audio = document.getElementById('audio');
+                            if (audio) {
+                                audio.play().catch(e => console.log('Audio error:', e));
+                            }
+                            
+                            // Show simple message
+                            setTimeout(() => {
+                                alert('🎂 Happy Birthday! 🎉\nYour wish will come true!');
+                            }, 500);
                         }
-                    });
-                }, i * 100);
-            }
-        }
-        
-        // Show special message
-        function showSpecialMessage() {
-            const specialMessage = document.createElement('div');
-            specialMessage.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50';
-            specialMessage.innerHTML = `
-                <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center transform scale-0" id="specialBox">
-                    <div class="text-6xl mb-4">🎂</div>
-                    <h2 class="quicksand text-3xl font-bold text-coral-pink mb-4">Happy Birthday!</h2>
-                    <p class="comfortaa text-lg text-charcoal-gray mb-6">
-                        All the best wishes today and always. 
-                        Hope your day is amazing! Can't wait to celebrate with you soon. 💕
-                    </p>
-                    <button onclick="closeSpecialMessage()" class="button">
-                        I Love You! 💖
-                    </button>
-                </div>
-            `;
-            
-            document.body.appendChild(specialMessage);
-            
-            setTimeout(() => {
-                document.getElementById('specialBox').classList.remove('scale-0');
-                document.getElementById('specialBox').classList.add('scale-100');
-            }, 100);
-        }
-        
-        // Close special message
-        function closeSpecialMessage() {
-            const specialMessage = document.querySelector('.fixed.inset-0.z-50');
-            if (specialMessage) {
-                specialMessage.remove();
-            }
-        }
-        
-        // Initialize carousel
-        function initializeCarousel() {
-            carousel = new Splide('#carousel', {
-                type: 'loop',
-                perPage: 3,
-                perMove: 1,
-                gap: '1.5rem',
-                autoplay: true,
-                interval: 4000,
-                speed: 650,
-                focus: 'center',
-                pauseOnHover: true,
-                breakpoints: {
-                    768: { perPage: 1 },
-                    1024: { perPage: 2 }
+                    };
+                    
+                    // Add to page
+                    const cakeContainer = document.querySelector('.cake-section .max-w-4xl');
+                    if (cakeContainer) {
+                        const images = cakeContainer.querySelector('.relative');
+                        if (images && images.nextSibling) {
+                            cakeContainer.insertBefore(button, images.nextSibling);
+                        } else {
+                            cakeContainer.appendChild(button);
+                        }
+                    }
                 }
-            });
-            carousel.mount();
-        }
-        
-        // Initialize audio
-        function initializeAudio() {
-            audio = document.getElementById('audio');
-            
-            audio.addEventListener('timeupdate', function() {
-                const progress = (this.currentTime / this.duration) * 100;
-                document.getElementById('progressBar').style.width = progress + '%';
-                
-                const minutes = Math.floor(this.currentTime / 60);
-                const seconds = Math.floor(this.currentTime % 60);
-                document.getElementById('currentTime').textContent = 
-                    minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-            });
-            
-            audio.addEventListener('ended', function() {
-                isPlaying = false;
-                document.getElementById('playIcon').textContent = '▶️';
-            });
-        }
-        
-        // Toggle song
-        function toggleSong() {
-            if (!audio) return;
-            
-            if (isPlaying) {
-                audio.pause();
-                document.getElementById('playIcon').textContent = '▶️';
-            } else {
-                audio.play();
-                document.getElementById('playIcon').textContent = '⏸️';
-            }
-            
-            isPlaying = !isPlaying;
-        }
-        
-        // Play song directly
-        function playSong() {
-            if (audio) {
-                audio.play();
-                isPlaying = true;
-                document.getElementById('playIcon').textContent = '⏸️';
-            }
-        }
-        
-        // Generate wish
-        function generateWish() {
-            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
-            const display = document.getElementById('wishDisplay');
-            
-            // Animate fountain
-            anime({
-                targets: '.fountain',
-                scale: [1, 1.1, 1],
-                duration: 600,
-                easing: 'easeInOutQuad'
-            });
-            
-            // Update display with animation
-            display.innerHTML = `
-                <div class="comfortaa text-xl text-coral-pink font-semibold animate-bounce">${randomWish}</div>
-            `;
-            
-            // Create celebration
-            createCelebration();
-        }
-        
-        // Start celebration
-        function startCelebration() {
-            // Scroll to cake section
-            document.querySelector('#birthdayCake').scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-            
-            // Create celebration burst
-            createCelebration();
-            
-            // Play song
-            setTimeout(() => {
-                playSong();
             }, 1000);
-        }
-        
-        // Create floaters
-        function createFloaters() {
-            const container = document.getElementById('floaters');
-            const elements = ['💖', '✨', '🌟', '💕', '🎈'];
-            
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    const floater = document.createElement('div');
-                    floater.className = 'float';
-                    floater.textContent = elements[Math.floor(Math.random() * elements.length)];
-                    floater.style.left = Math.random() * 100 + '%';
-                    floater.style.top = '100%';
-                    floater.style.animationDelay = Math.random() * 2 + 's';
-                    container.appendChild(floater);
-                    
-                    anime({
-                        targets: floater,
-                        translateY: -window.innerHeight - 100,
-                        duration: 8000,
-                        easing: 'linear',
-                        complete: function() {
-                            floater.remove();
-                        }
-                    });
-                }
-            }, 2000);
-        }
-        
-        // Export functions
-        window.startCelebration = startCelebration;
-        window.playSong = playSong;
-        window.toggleSong = toggleSong;
-        window.startCakeAnimation = startCakeAnimation;
-        window.generateWish = generateWish;
-        window.closeSpecialMessage = closeSpecialMessage;
+        });
     </script>
+</body>
+</html>
