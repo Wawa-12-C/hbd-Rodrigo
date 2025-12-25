@@ -4,33 +4,6 @@
 // Global variables
 let isPlaying = false;
 let audioElement;
-let memoryCarousel;
-
-const style = document.createElement('style');
-style.textContent = `
-    .cake-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-        pointer-events: none;
-    }
-    .cake-container.active {
-        opacity: 1;
-        pointer-events: auto;
-        cursor: pointer;
-    }
-    .cake-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-    }
-`;
-document.head.appendChild(style);
 
 // Birthday wishes array
 const birthdayWishes = [
@@ -53,402 +26,514 @@ const birthdayWishes = [
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initializeParticles();
-    initializeCandles();
-    initializeCarousel();
-    initializeAudio();
-    createFloatingParticles();
+    console.log('DOM loaded - setting up everything');
     
-    // Initialize cake message
-    document.getElementById('candleMessage').style.opacity = '0';
+    // Setup blow candles button
+    setupBlowCandlesButton();
     
-    });
+    // Setup audio
+    setupAudio();
     
-    // Add smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-});
-
-// Create floating particles effect
-function createFloatingParticles() {
-    const container = document.getElementById('particles-container');
+    // Setup other buttons
+    setupButtons();
     
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 6 + 's';
-        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-        container.appendChild(particle);
-    }
-}
-
-// Initialize candle interactions
-function initializeCandles() {
-    const cakeWithCandles = document.getElementById('cakeWithCandles');
+    // Setup carousel
+    setupCarousel();
     
-    if (cakeWithCandles) {
-        // Add click event to switch pictures
-        cakewithCandles.style.cursor = 'pointer';
-        cakeWithCandles.addEventListener('click', function() {
-            startCakeAnimation();
-        });
-    }
-    
-    // Initialize message
-    const message = document.getElementById('candleMessage') || document.getElementById('cakeMessage');
+    // Show initial message
+    const message = document.getElementById('candleMessage');
     if (message) {
         message.style.opacity = '1';
+        message.textContent = 'Click the button below to blow out the candles! 🎂';
     }
+});
+
+// ========== BLOW CANDLES BUTTON FUNCTIONALITY ==========
+function setupBlowCandlesButton() {
+    console.log('Setting up blow candles button...');
+    
+    // Create or get the blow candles button
+    let blowButton = document.getElementById('blowCandlesBtn');
+    
+    if (!blowButton) {
+        // Create the button if it doesn't exist
+        blowButton = document.createElement('button');
+        blowButton.id = 'blowCandlesBtn';
+        blowButton.className = 'button';
+        blowButton.innerHTML = '🎂 Blow Out Candles! 🎂';
+        blowButton.style.cssText = `
+            background: linear-gradient(135deg, #FFC857, #FFE066);
+            color: #4A4A4A;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 200, 87, 0.3);
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        `;
+        
+        // Add hover effects
+        blowButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 8px 25px rgba(255, 200, 87, 0.4)';
+        });
+        
+        blowButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 6px 20px rgba(255, 200, 87, 0.3)';
+        });
+        
+        // Find where to insert the button (after the cake images)
+        const cakeContainer = document.querySelector('.cake-section .relative');
+        if (cakeContainer && cakeContainer.parentNode) {
+            cakeContainer.parentNode.insertBefore(blowButton, cakeContainer.nextSibling);
+        } else {
+            // Fallback: add to cake section
+            const cakeSection = document.querySelector('.cake-section .max-w-4xl');
+            if (cakeSection) {
+                cakeSection.appendChild(blowButton);
+            }
+        }
+    }
+    
+    // Add click event to blow candles
+    blowButton.addEventListener('click', function() {
+        console.log('Blow candles button clicked!');
+        blowOutCandles();
+    });
 }
 
-// Start cake animation sequence
-function startCakeAnimation() {
+function blowOutCandles() {
+    console.log('Blowing out candles...');
+    
     const cakeWithCandles = document.getElementById('cakeWithCandles');
     const cakeWithoutCandles = document.getElementById('cakeWithoutCandles');
+    const message = document.getElementById('candleMessage');
+    const blowButton = document.getElementById('blowCandlesBtn');
     
-    if (!cakeWithCandles || !cakeWithoutCandles) return;
+    if (!cakeWithCandles || !cakeWithoutCandles) {
+        console.error('Cake images not found!');
+        return;
+    }
     
-    // Switch from picture with candles to picture without candles
+    // Disable button during animation
+    if (blowButton) {
+        blowButton.disabled = true;
+        blowButton.style.opacity = '0.7';
+        blowButton.style.cursor = 'not-allowed';
+        blowButton.innerHTML = '🎉 Blowing Candles... 🎉';
+    }
+    
+    // Add button click animation
+    if (blowButton) {
+        blowButton.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            blowButton.style.transform = 'scale(1)';
+        }, 200);
+    }
+    
+    // Switch images: hide cake with candles, show cake without candles
     cakeWithCandles.style.opacity = '0';
     cakeWithoutCandles.style.opacity = '1';
     
     // Update message
-    const message = document.getElementById('candleMessage') || document.getElementById('cakeMessage');
     if (message) {
         message.textContent = '🎉 Happy Birthday! Your wish will come true! 🎉';
+        message.style.opacity = '1';
+        
+        // Animate message if anime.js is available
+        if (window.anime) {
+            anime({
+                targets: message,
+                scale: [0.9, 1.1, 1],
+                duration: 800,
+                easing: 'easeOutElastic(1, .8)'
+            });
+        }
     }
     
-    // Create celebration effect 
-    createCelebrationBrust();
+    // Create celebration effects
+    createCelebration();
     
-    // Show pop-up message after delay
+    // Play birthday song
     setTimeout(() => {
-        showSpecialMessage();
+        playBirthdaySong();
+    }, 500);
+    
+    // Show special message
+    setTimeout(() => {
+        showBirthdayMessage();
+        
+        // Update button to show completion
+        if (blowButton) {
+            blowButton.innerHTML = '🎂 Candles Blown Out! 🎂';
+            setTimeout(() => {
+                blowButton.disabled = false;
+                blowButton.style.opacity = '1';
+                blowButton.style.cursor = 'pointer';
+                blowButton.innerHTML = '🎂 Relight Candles? 🎂';
+                
+                // Add click to reset (optional)
+                blowButton.onclick = function() {
+                    resetCandles();
+                };
+            }, 2000);
+        }
     }, 1000);
 }
 
-
-// Celebration when all candles are blown out
-function celebrateAllCandlesOut() {
-    startCakeAnimation();
-}
-
-// Create grand finale confetti
-function createGrandFinaleConfetti() {
-    const colors = ['#FFD700', '#E8B4B8', '#F7E7CE', '#A8B5A0', '#F4C2C2'];
+function resetCandles() {
+    console.log('Resetting candles...');
     
-    for (let i = 0; i < 50; i++) {
-        setTimeout(() => {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = Math.random() * window.innerWidth + 'px';
-            confetti.style.top = '-10px';
-            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(confetti);
-            
-            setTimeout(() => {
-                confetti.remove();
-            }, 3000);
-        }, i * 100);
+    const cakeWithCandles = document.getElementById('cakeWithCandles');
+    const cakeWithoutCandles = document.getElementById('cakeWithoutCandles');
+    const message = document.getElementById('candleMessage');
+    const blowButton = document.getElementById('blowCandlesBtn');
+    
+    if (!cakeWithCandles || !cakeWithoutCandles) return;
+    
+    // Switch back to cake with candles
+    cakeWithCandles.style.opacity = '1';
+    cakeWithoutCandles.style.opacity = '0';
+    
+    // Reset message
+    if (message) {
+        message.textContent = 'Click the button below to blow out the candles again! 🎂';
     }
-}
-
-
-// Show special birthday message
-function showSpecialMessage() {
-    const specialMessage = document.createElement('div');
-    specialMessage.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50';
-    specialMessage.innerHTML = `
-        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center transform scale-0" id="specialMessageBox">
-            <div class="text-6xl mb-4">🎂</div>
-            <h2 class="playfair text-3xl font-bold text-burgundy mb-4">Happy Birthday!</h2>
-            <p class="dancing text-xl text-charcoal mb-6">
-                You are my greatest adventure, my deepest love, and my favorite person. 
-                Every day with you is a celebration, but today is all about you!
-            </p>
-            <button onclick="closeSpecialMessage()" class="bg-gradient-to-r from-rose-gold to-blush-pink text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
-                I Love You! 💕
-            </button>
-        </div>
-    `;
     
-    document.body.appendChild(specialMessage);
-    
-    // Animate the message box
-    setTimeout(() => {
-        document.getElementById('specialMessageBox').classList.remove('scale-0');
-        document.getElementById('specialMessageBox').classList.add('scale-100');
-    }, 100);
-}
-
-// Close special message
-function closeSpecialMessage() {
-    const specialMessage = document.querySelector('.fixed.inset-0.z-50');
-    if (specialMessage) {
-        specialMessage.remove();
+    // Reset button
+    if (blowButton) {
+        blowButton.innerHTML = '🎂 Blow Out Candles! 🎂';
+        blowButton.onclick = function() {
+            blowOutCandles();
+        };
     }
+    
+    // Create small celebration
+    createCelebration();
 }
 
-// Initialize memory carousel
-function initializeCarousel() {
-    memoryCarousel = new Splide('#memoryCarousel', {
-        type: 'loop',
-        perPage: 3,
-        perMove: 1,
-        gap: '2rem',
-        autoplay: true,
-        interval: 4000,
-        pauseOnHover: true,
-        breakpoints: {
-            768: {
-                perPage: 1,
-            },
-            1024: {
-                perPage: 2,
-            }
+// ========== AUDIO FUNCTIONALITY ==========
+function setupAudio() {
+    console.log('Setting up audio...');
+    audioElement = document.getElementById('audio');
+    
+    if (!audioElement) {
+        console.error('Audio element not found!');
+        return;
+    }
+    
+    console.log('Audio element found:', audioElement);
+    
+    // Update progress bar
+    audioElement.addEventListener('timeupdate', function() {
+        const progressBar = document.getElementById('progressBar');
+        if (progressBar && this.duration) {
+            const progress = (this.currentTime / this.duration) * 100;
+            progressBar.style.width = progress + '%';
+        }
+        
+        // Update current time
+        const currentTimeEl = document.getElementById('currentTime');
+        if (currentTimeEl) {
+            const minutes = Math.floor(this.currentTime / 60);
+            const seconds = Math.floor(this.currentTime % 60);
+            currentTimeEl.textContent = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
         }
     });
     
-    memoryCarousel.mount();
-}
-
-// Initialize audio player
-function initializeAudio() {
-    audioElement = document.getElementById('birthdayAudio');
-    
-    audioElement.addEventListener('timeupdate', function() {
-        const progress = (this.currentTime / this.duration) * 100;
-        document.getElementById('progressBar').style.width = progress + '%';
-        
-        const minutes = Math.floor(this.currentTime / 60);
-        const seconds = Math.floor(this.currentTime % 60);
-        document.getElementById('currentTime').textContent = 
-            minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-    });
-    
+    // Reset when audio ends
     audioElement.addEventListener('ended', function() {
         isPlaying = false;
-        document.getElementById('playIcon').textContent = '▶️';
+        const playIcon = document.getElementById('playIcon');
+        if (playIcon) {
+            playIcon.textContent = '▶️';
+        }
+    });
+    
+    // Error handling
+    audioElement.addEventListener('error', function(e) {
+        console.error('Audio error:', e);
+        const playButton = document.getElementById('playButton');
+        if (playButton) {
+            playButton.style.opacity = '0.5';
+            playButton.title = 'Audio file not found';
+        }
     });
 }
 
-// Toggle birthday song
 function toggleBirthdaySong() {
-    if (!audioElement) return;
+    console.log('Toggle song clicked');
+    
+    if (!audioElement) {
+        alert('Audio player not found. Please refresh the page.');
+        return;
+    }
+    
+    const playIcon = document.getElementById('playIcon');
     
     if (isPlaying) {
         audioElement.pause();
-        document.getElementById('playIcon').textContent = '▶️';
+        if (playIcon) playIcon.textContent = '▶️';
+        isPlaying = false;
     } else {
-        audioElement.play();
-        document.getElementById('playIcon').textContent = '⏸️';
-    }
-    
-    isPlaying = !isPlaying;
-}
-
-// Play birthday song directly
-function playBirthdaySong() {
-    if (audioElement) {
-        audioElement.play();
+        audioElement.play().catch(function(error) {
+            console.error('Playback failed:', error);
+            alert('Could not play audio. The audio file might be missing.');
+        });
+        if (playIcon) playIcon.textContent = '⏸️';
         isPlaying = true;
-        document.getElementById('playIcon').textContent = '⏸️';
     }
 }
 
-// Generate random birthday wish
-function generateWish() {
-    const wishDisplay = document.getElementById('wishDisplay');
-    const randomWish = birthdayWishes[Math.floor(Math.random() * birthdayWishes.length)];
+function playBirthdaySong() {
+    console.log('Play song clicked');
     
-    // Create floating wish element
-    const floatingWish = document.createElement('div');
-    floatingWish.className = 'floating-wish';
-    floatingWish.textContent = randomWish;
-    
-    wishDisplay.appendChild(floatingWish);
-    
-    // Animate the wish
-    anime({
-        targets: floatingWish,
-        translateY: -100,
-        opacity: [1, 0],
-        scale: [1, 0.8],
-        duration: 4000,
-        easing: 'easeOutQuad',
-        complete: function() {
-            floatingWish.remove();
+    if (!audioElement) {
+        audioElement = document.getElementById('audio');
+        if (!audioElement) {
+            alert('Audio player not found.');
+            return;
         }
+    }
+    
+    const playIcon = document.getElementById('playIcon');
+    
+    audioElement.play().catch(function(error) {
+        console.error('Playback failed:', error);
+        alert('Could not play audio. The audio file might be missing.');
     });
     
-    // Update display
-    setTimeout(() => {
-        wishDisplay.innerHTML = `<p class="dancing text-xl text-burgundy font-semibold">${randomWish}</p>`;
-    }, 500);
-    
-    // Animate wish well
-    anime({
-        targets: '.wish-well',
-        scale: [1, 1.1, 1],
-        duration: 600,
-        easing: 'easeInOutQuad'
-    });
+    if (playIcon) playIcon.textContent = '⏸️';
+    isPlaying = true;
 }
 
-// Start celebration function
+// ========== OTHER BUTTONS ==========
+function setupButtons() {
+    console.log('Setting up buttons...');
+    
+    // Start Celebration button
+    const startBtn = document.querySelector('button[onclick="startCelebration()"]');
+    if (startBtn) {
+        startBtn.onclick = startCelebration;
+    }
+    
+    // Play Song button
+    const playBtn = document.querySelector('button[onclick="playBirthdaySong()"]');
+    if (playBtn) {
+        playBtn.onclick = playBirthdaySong;
+    }
+    
+    // Play/Pause button
+    const toggleBtn = document.getElementById('playButton');
+    if (toggleBtn) {
+        toggleBtn.onclick = toggleBirthdaySong;
+    }
+    
+    // Wish fountain
+    const fountain = document.querySelector('.fountain');
+    if (fountain) {
+        fountain.onclick = generateWish;
+    }
+}
+
+// ========== CELEBRATION FUNCTIONS ==========
 function startCelebration() {
+    console.log('Start celebration clicked');
+    
     // Scroll to cake section
-    document.querySelector('#birthdayCake').scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-    });
+    const cakeSection = document.querySelector('.cake-section');
+    if (cakeSection) {
+        cakeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
     
-    // Add some celebration effects
-    createCelebrationBurst();
+    // Create confetti
+    createCelebration();
     
-    // Play birthday song
+    // Play song after delay
     setTimeout(() => {
         playBirthdaySong();
     }, 1000);
 }
 
-// Create celebration burst effect
-function createCelebrationBurst() {
+function generateWish() {
+    console.log('Generate wish clicked');
+    
+    const wishDisplay = document.getElementById('wishDisplay');
+    if (!wishDisplay) return;
+    
+    const randomWish = birthdayWishes[Math.floor(Math.random() * birthdayWishes.length)];
+    
+    // Display wish
+    wishDisplay.innerHTML = `<p class="comfortaa text-xl text-coral-pink font-semibold">${randomWish}</p>`;
+    
+    // Animate fountain
+    const fountain = document.querySelector('.fountain');
+    if (fountain) {
+        fountain.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            fountain.style.transform = 'scale(1)';
+        }, 300);
+    }
+    
+    // Create confetti
+    createCelebration();
+}
+
+// ========== VISUAL EFFECTS ==========
+function createCelebration() {
+    console.log('Creating celebration...');
+    
     const colors = ['#FFD700', '#E8B4B8', '#F7E7CE', '#A8B5A0', '#F4C2C2'];
     
     for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'confetti';
-        particle.style.left = Math.random() * window.innerWidth + 'px';
-        particle.style.top = Math.random() * window.innerHeight + 'px';
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.animationDelay = Math.random() * 2 + 's';
-        document.body.appendChild(particle);
-        
         setTimeout(() => {
-            particle.remove();
-        }, 3000);
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-20px';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.borderRadius = '50%';
+            confetti.style.zIndex = '9999';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.boxShadow = '0 0 6px currentColor';
+            
+            document.body.appendChild(confetti);
+            
+            // Simple animation
+            confetti.style.transition = 'all 2s ease-out';
+            setTimeout(() => {
+                confetti.style.transform = `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`;
+                confetti.style.opacity = '0';
+            }, 10);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (confetti.parentNode) {
+                    confetti.remove();
+                }
+            }, 2100);
+        }, i * 50);
     }
 }
 
-// Initialize particles system
-function initializeParticles() {
-    // This could be enhanced with Matter.js for more complex physics
-    // For now, we'll use CSS animations for simplicity
-}
-
-// Smooth scroll function for navigation
-function smoothScrollTo(element) {
-    element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
-}
-
-// Add scroll-triggered animations
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.aurora-bg');
+function showBirthdayMessage() {
+    console.log('Showing birthday message...');
     
-    if (parallax) {
-        parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+    // Remove existing message if any
+    const existing = document.querySelector('.birthday-message-overlay');
+    if (existing) existing.remove();
+    
+    // Create message overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'birthday-message-overlay';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(4px);
+    `;
+    
+    overlay.innerHTML = `
+        <div style="
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            transform: scale(0);
+            transition: transform 0.3s ease-out;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        ">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🎂</div>
+            <h2 style="
+                font-family: 'Quicksand', sans-serif;
+                font-size: 2rem;
+                color: #FFC857;
+                margin-bottom: 1rem;
+            ">Happy Birthday!</h2>
+            <p style="
+                font-family: 'Comfortaa', cursive;
+                color: #4A4A4A;
+                margin-bottom: 2rem;
+                line-height: 1.5;
+            ">
+                I'm sending my own wish across all the distances —  
+                for your joy, your success, and the moment I finally get to hug you again.  
+                Every day with you is worth the wait. I love you 宝贝！
+            </p>
+            <button onclick="this.closest('.birthday-message-overlay').remove()" style="
+                background: linear-gradient(to right, #FFC857, #FFE066);
+                color: #4A4A4A;
+                border: none;
+                padding: 0.75rem 2rem;
+                border-radius: 2rem;
+                font-weight: bold;
+                cursor: pointer;
+                font-size: 1.1rem;
+                transition: transform 0.3s;
+            ">
+                I Love You! 💕
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    
+    // Animate in
+    setTimeout(() => {
+        const box = overlay.querySelector('div');
+        if (box) {
+            box.style.transform = 'scale(1)';
+        }
+    }, 10);
+}
+
+// ========== CAROUSEL ==========
+function setupCarousel() {
+    const carouselElement = document.getElementById('carousel');
+    if (carouselElement && typeof Splide !== 'undefined') {
+        try {
+            new Splide('#carousel', {
+                type: 'loop',
+                perPage: 3,
+                perMove: 1,
+                gap: '1.5rem',
+                autoplay: true,
+                interval: 4000,
+                pauseOnHover: true,
+                breakpoints: {
+                    768: { perPage: 1 },
+                    1024: { perPage: 2 }
+                }
+            }).mount();
+            console.log('Carousel initialized');
+        } catch (error) {
+            console.error('Carousel error:', error);
+        }
     }
-});
-
-// Add touch support for mobile
-if ('ontouchstart' in window) {
-    document.addEventListener('touchstart', function(e) {
-        // Add touch feedback for interactive elements
-        if (e.target.classList.contains('candle') || 
-            e.target.classList.contains('play-button') ||
-            e.target.classList.contains('wish-well')) {
-            e.target.style.transform = 'scale(0.95)';
-        }
-    });
-    
-    document.addEventListener('touchend', function(e) {
-        if (e.target.classList.contains('candle') || 
-            e.target.classList.contains('play-button') ||
-            e.target.classList.contains('wish-well')) {
-            e.target.style.transform = 'scale(1)';
-        }
-    });
 }
 
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Apply debouncing to scroll events
-const debouncedScrollHandler = debounce(function() {
-    // Scroll-based animations can be added here
-}, 100);
-
-window.addEventListener('scroll', debouncedScrollHandler);
-
-// Add loading animation
-window.addEventListener('load', function() {
-    // Fade in the page content
-    anime({
-        targets: 'body',
-        opacity: [0, 1],
-        duration: 1000,
-        easing: 'easeOutQuad'
-    });
-    
-    // Animate hero elements
-    anime({
-        targets: '.typewriter',
-        opacity: [0, 1],
-        translateY: [50, 0],
-        duration: 1500,
-        delay: 500,
-        easing: 'easeOutQuad'
-    });
-});
-
-// Error handling for audio
-if (audioElement) {
-    audioElement.addEventListener('error', function(e) {
-        console.log('Audio loading error:', e);
-        // Fallback: show message that audio couldn't load
-        const playButton = document.getElementById('playButton');
-        if (playButton) {
-            playButton.title = 'Audio not available';
-            playButton.style.opacity = '0.5';
-        }
-    });
-}
-
-// Add resize handler for responsive adjustments
-window.addEventListener('resize', debounce(function() {
-    // Recalculate positions if needed
-    if (memoryCarousel) {
-        memoryCarousel.refresh();
-    }
-}, 250));
-
-// Export functions for global access
+// ========== EXPORT FUNCTIONS ==========
 window.startCelebration = startCelebration;
 window.playBirthdaySong = playBirthdaySong;
 window.toggleBirthdaySong = toggleBirthdaySong;
 window.generateWish = generateWish;
-window.closeSpecialMessage = closeSpecialMessage;
+window.blowOutCandles = blowOutCandles;
+window.resetCandles = resetCandles;
