@@ -14,6 +14,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -252,6 +255,25 @@
             line-height: 1.4;
         }
         
+        /* Photo Count Badge */
+        .photo-count {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--coral-pink);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
         /* Button */
         .button {
             background: var(--golden-yellow);
@@ -279,6 +301,144 @@
             padding: 40px 20px;
         }
         
+        /* Photo Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10000;
+        }
+        
+        .modal-close:hover {
+            color: var(--coral-pink);
+            transform: scale(1.1);
+        }
+        
+        .modal-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: white;
+            padding: 20px 0;
+            font-size: 1.2rem;
+            font-family: 'Quicksand', sans-serif;
+        }
+        
+        /* Gallery Navigation */
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-nav:hover {
+            background: var(--coral-pink);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .gallery-prev {
+            left: 20px;
+        }
+        
+        .gallery-next {
+            right: 20px;
+        }
+        
+        /* Gallery Thumbnails */
+        .gallery-thumbnails {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            overflow-x: auto;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+        
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .thumbnail:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+        
+        .thumbnail.active {
+            opacity: 1;
+            border: 2px solid var(--coral-pink);
+            transform: scale(1.1);
+        }
+        
+        /* Photo Counter */
+        .photo-counter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.2rem;
+            font-family: 'Quicksand', sans-serif;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+            z-index: 10000;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .timeline::after {
@@ -297,6 +457,21 @@
             
             .timeline-right {
                 left: 0%;
+            }
+            
+            .gallery-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .gallery-thumbnails {
+                padding: 10px;
+            }
+            
+            .thumbnail {
+                width: 50px;
+                height: 50px;
             }
         }
         
@@ -346,7 +521,7 @@
                 Our Sweet Memories 💕
             </h1>
             <p class="subtitle">
-                Every moment with you is a treasure! Here's to all the beautiful memories we've made together.
+                Every moment with you is a treasure! Click on any memory to see all the photos from that special time.
             </p>
         </div>
     </section>
@@ -417,69 +592,86 @@
                 Our Photo Collection 📸
             </h2>
             <p class="text-center text-charcoal-gray mb-12 max-w-2xl mx-auto">
-                Each photo tells a story of our beautiful journey together. Slide through and click any photo to see it bigger!
+                Each memory card has multiple photos! Click on any card to open the full gallery for that special moment.
             </p>
 
             <div class="splide" id="memoriesSlider">
                 <div class="splide__track">
                     <ul class="splide__list">
+                        <!-- Celebrating your birthday -->
                         <li class="splide__slide">
-                            <div class="memory-card" onclick="openModal('./resource/memory-1.jpg', 'Our first walk together 🌹')">
-                                <img src="memory-1.jpg" alt="Memory 1">
+                            <div class="memory-card" onclick="openMemoryGallery(0)">
+                                <div class="photo-count">4</div>
+                                <img src="memory-1.jpg" alt="Celebrating your birthday">
                                 <div class="memory-content">
                                     <div class="memory-title">Celebrating your birthday</div>
                                     <div class="memory-date">28 December 2024</div>
-                                    <div class="memory-text">You invited to buffet dinner and a karaoke party</div>
+                                    <div class="memory-text">Buffet dinner and karaoke party with all our friends</div>
                                 </div>
                             </div>
                         </li>
+                        
+                        <!-- First lake date -->
                         <li class="splide__slide">
-                            <div class="memory-card" onclick="openModal('./resource/memory-2.jpg', 'Coffee and sweet conversations ☕')">
-                                <img src="memory-2.jpg" alt="Memory 2">
+                            <div class="memory-card" onclick="openMemoryGallery(1)">
+                                <div class="photo-count">11</div>
+                                <img src="memory-2.jpg" alt="First lake date">
                                 <div class="memory-content">
                                     <div class="memory-title">First lake date</div>
                                     <div class="memory-date">18 January 2025</div>
-                                    <div class="memory-text">Just knocked the door and everything started 💕</div>
+                                    <div class="memory-text">Our magical first date by the beautiful lake 💕</div>
                                 </div>
                             </div>
                         </li>
+                        
+                        <!-- Birthday gift surprise -->
                         <li class="splide__slide">
-                            <div class="memory-card" onclick="openModal('./resource/memory-3.jpg', 'Beach adventures together 🏖️')">
-                                <img src="memory-3.jpg" alt="Memory 3">
+                            <div class="memory-card" onclick="openMemoryGallery(2)">
+                                <div class="photo-count">4</div>
+                                <img src="memory-3.jpg" alt="Birthday gift surprise">
                                 <div class="memory-content">
-                                    <div class="memory-title">Birthday gift surprise from you</div>
+                                    <div class="memory-title">Birthday gift surprise</div>
                                     <div class="memory-date">12 February 2025</div>
-                                    <div class="memory-text">First time you surprised me with a box of Lego! 💝</div>
+                                    <div class="memory-text">The amazing Lego set you surprised me with! 💝</div>
                                 </div>
                             </div>
                         </li>
+                        
+                        <!-- Video call dates -->
                         <li class="splide__slide">
-                            <div class="memory-card" onclick="openModal('./resource/memory-4.jpg', 'Meadow picnics and sunshine 🌸')">
-                                <img src="memory-4.jpg" alt="Memory 4">
+                            <div class="memory-card" onclick="openMemoryGallery(3)">
+                                <div class="photo-count">10</div>
+                                <img src="memory-4.jpg" alt="Video call dates">
                                 <div class="memory-content">
-                                    <div class="memory-title">So many video call dates</div>
+                                    <div class="memory-title">Video call dates</div>
                                     <div class="memory-date">January - August 2025</div>
-                                    <div class="memory-text">Enjoy every moment of our movies, eating, talking, and dating</div>
+                                    <div class="memory-text">Movie nights, dinners, and endless conversations</div>
                                 </div>
                             </div>
                         </li>
+                        
+                        <!-- Welcome to my homeland -->
                         <li class="splide__slide">
-                            <div class="memory-card" onclick="openModal('./resource/memory-5.jpg', 'Cozy fireside moments 🔥')">
-                                <img src="memory-5.jpg" alt="Memory 5">
+                            <div class="memory-card" onclick="openMemoryGallery(4)">
+                                <div class="photo-count">12</div>
+                                <img src="memory-5.jpg" alt="Welcome to my homeland">
                                 <div class="memory-content">
                                     <div class="memory-title">Welcome to my homeland</div>
                                     <div class="memory-date">13 - 29 August 2025</div>
-                                    <div class="memory-text">First time you visited Thailand and dating, traveling together</div>
+                                    <div class="memory-text">Your first visit to Thailand - so many adventures!</div>
                                 </div>
                             </div>
                         </li>
+                        
+                        <!-- Long distance time -->
                         <li class="splide__slide">
-                            <div class="memory-card" onclick="openModal('./resource/memory-6.jpg', 'Stargazing together ✨')">
-                                <img src="memory-6.jpg" alt="Memory 6">
+                            <div class="memory-card" onclick="openMemoryGallery(5)">
+                                <div class="photo-count">5</div>
+                                <img src="memory-6.jpg" alt="Long distance time">
                                 <div class="memory-content">
-                                    <div class="memory-title">Our long distance time come back</div>
+                                    <div class="memory-title">Long distance love</div>
                                     <div class="memory-date">August 2025 - Future</div>
-                                    <div class="memory-text">Looking forward to the day we can be together again</div>
+                                    <div class="memory-text">Counting days until we're together again</div>
                                 </div>
                             </div>
                         </li>
@@ -489,7 +681,7 @@
 
             <div class="text-center mt-12">
                 <a href="index.html" class="button">
-                    Back to Home
+                    <i class="fas fa-home mr-2"></i> Back to Home
                 </a>
             </div>
         </div>
@@ -510,15 +702,125 @@
         </div>
     </footer>
     
-    <!-- Photo Modal -->
-    <div id="photoModal" class="modal">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
-        <div id="modalCaption" class="modal-caption"></div>
+    <!-- Memory Gallery Modal -->
+    <div id="galleryModal" class="modal">
+        <span class="modal-close" onclick="closeGalleryModal()">&times;</span>
+        <div class="photo-counter" id="photoCounter">1 / 12</div>
+        <button class="gallery-nav gallery-prev" onclick="changeGalleryPhoto(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="gallery-nav gallery-next" onclick="changeGalleryPhoto(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <img class="modal-content" id="galleryImage">
+        <div id="galleryCaption" class="modal-caption"></div>
+        <div class="gallery-thumbnails" id="galleryThumbnails"></div>
     </div>
     
     <script>
-        // Initialize timeline animations
+        // Memory gallery data - each memory has multiple photos
+        const memoryGalleries = [
+            {
+                id: 0,
+                title: "Celebrating your birthday",
+                date: "28 December 2024",
+                description: "Buffet dinner and karaoke party with all our friends",
+                photos: [
+                    { src: "memory-1.jpg", caption: "Listen to you singing for first time" },
+                    { src: "birthday-1.jpg", caption: "Rodrigo on stage" },
+                    { src: "birthday-2.jpg", caption: "At first we sit in opposite sides" },
+                    { src: "birthday-3.jpg", caption: "Buffet dinner together" }
+                ]
+            },
+            {
+                id: 1,
+                title: "First lake date",
+                date: "18 January 2025",
+                description: "Just knocked the door and everything started 💕",
+                photos: [
+                    { src: "memory-2.jpg", caption: "Sit and talk on good view bench" },
+                    { src: "lake-1.jpg", caption: "Cotti coffee with you" },
+                    { src: "lake-2.jpg", caption: "We found us in the other universe" },
+                    { src: "lake-3.jpg", caption: "Enjoying the peaceful view" },
+                    { src: "lake-4.jpg", caption: "Beautiful sunset at the lake" },
+                    { src: "lake-5.jpg", caption: "First selfie?" },
+                    { src: "lake-6.jpg", caption: "I love guacamole" },
+                    { src: "lake-7.jpg", caption: "Bowling first time with your friends" },
+                    { src: "lake-8.jpg", caption: "So funny selfie for Jevon hahaha" },
+                    { src: "lake-9.jpg", caption: "Cooking with you" },
+                    { src: "lake-10.jpg", caption: "Last day in Chengdu" }
+
+                ]
+            },
+            {
+                id: 2,
+                title: "Birthday gift surprise",
+                date: "12 February 2025",
+                description: "The amazing Lego set you surprised me with!",
+                photos: [
+                    { src: "memory-3.jpg", caption: "The surprise Lego box!" },
+                    { src: "lego-1.jpg", caption: "My first green Lamboghini" },
+                    { src: "lego-2.jpg", caption: "Start building timeee" },
+                    { src: "lego-3.jpg", caption: "Second part is not easy" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Video call dates",
+                date: "January - August 2025",
+                description: "Movie nights, dinners, and endless conversations",
+                photos: [
+                    { src: "memory-4.jpg", caption: "Beijing duck together" },
+                    { src: "call-1.jpg", caption: "Beijing duck vs Chengdu duck" },
+                    { src: "call-2.jpg", caption: "Eating together while you at Beijing" },
+                    { src: "call-3.jpg", caption: "You are a cute doggy" },
+                    { src: "call-4.jpg", caption: "F1 in China with you" },
+                    { src: "call-5.jpg", caption: "Burgers date" },
+                    { src: "call-6.jpg", caption: "Minecraft with you so fun" },
+                    { src: "call-7.jpg", caption: "We love noodle" },
+                    { src: "call-8.jpg", caption: "First Subway in China" },
+                    { src: "call-9.jpg", caption: "You always fall asleep on the couch" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Welcome to my homeland",
+                date: "13 - 29 August 2025",
+                description: "Your first visit to Thailand - so many adventures!",
+                photos: [
+                    { src: "memory-5.jpg", caption: "You love this yellow pagoda" },
+                    { src: "thailand-1.jpg", caption: "So beautiful view with you" },
+                    { src: "thailand-2.jpg", caption: "Photo at park " },
+                    { src: "thailand-3.jpg", caption: "Your first Mookata" },
+                    { src: "thailand-4.jpg", caption: "Wat Pra Keaw and Palace tour" },
+                    { src: "thailand-5.jpg", caption: "Sunset heart painted at the bridge" },
+                    { src: "thailand-6.jpg", caption: "Pataya with you" },
+                    { src: "thailand-7.jpg", caption: "First polaroid" },
+                    { src: "thailand-8.jpg", caption: "Sceince museum with you was so good" },
+                    { src: "thailand-9.jpg", caption: "Baiyok Bangkok view" },
+                    { src: "thailand-10.jpg", caption: "We were on the balloon" },
+                    { src: "thailand-11.jpg", caption: "Time to say bye" }
+                ]
+            },
+            {
+                id: 5,
+                title: "Long distance love",
+                date: "August 2025 - Future",
+                description: "Counting days until we're together again",
+                photos: [
+                    { src: "memory-6.jpg", caption: "Sushi date" },
+                    { src: "distance-1.jpg", caption: "Burgers time hehe" },
+                    { src: "distance-2.jpg", caption: "Burgers with you always good" },
+                    { src: "distance-3.jpg", caption: "Movie after haven't watched for a while" },
+                    { src: "distance-4.jpg", caption: "Ramen date" }
+                ]
+            }
+        ];
+
+        let currentGalleryIndex = 0;
+        let currentPhotoIndex = 0;
+        
+        // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             initializeCuteTimeline();
             initializeCuteCards();
@@ -584,15 +886,18 @@
             slider.mount();
         }
         
-        // Modal functions
-        function openModal(imageSrc, caption) {
-            const modal = document.getElementById('photoModal');
-            const modalImg = document.getElementById('modalImage');
-            const modalCaption = document.getElementById('modalCaption');
+        // Open memory gallery
+        function openMemoryGallery(galleryIndex) {
+            currentGalleryIndex = galleryIndex;
+            currentPhotoIndex = 0;
+            const gallery = memoryGalleries[galleryIndex];
             
+            // Update modal
+            updateGalleryModal();
+            
+            // Show modal
+            const modal = document.getElementById('galleryModal');
             modal.style.display = 'block';
-            modalImg.src = imageSrc;
-            modalCaption.textContent = caption;
             
             // Animate modal appearance
             anime({
@@ -601,10 +906,83 @@
                 duration: 300,
                 easing: 'easeOutQuad'
             });
+            
+            // Prevent body scrolling
+            document.body.style.overflow = 'hidden';
         }
         
-        function closeModal() {
-            const modal = document.getElementById('photoModal');
+        // Update gallery modal with current photo
+        function updateGalleryModal() {
+            const gallery = memoryGalleries[currentGalleryIndex];
+            const photo = gallery.photos[currentPhotoIndex];
+            
+            // Update main image
+            const galleryImage = document.getElementById('galleryImage');
+            galleryImage.src = photo.src;
+            galleryImage.alt = photo.caption;
+            
+            // Update caption
+            const galleryCaption = document.getElementById('galleryCaption');
+            galleryCaption.textContent = photo.caption;
+            
+            // Update counter
+            const photoCounter = document.getElementById('photoCounter');
+            photoCounter.textContent = `${currentPhotoIndex + 1} / ${gallery.photos.length}`;
+            
+            // Update thumbnails
+            updateThumbnails();
+        }
+        
+        // Update thumbnails
+        function updateThumbnails() {
+            const gallery = memoryGalleries[currentGalleryIndex];
+            const thumbnailsContainer = document.getElementById('galleryThumbnails');
+            
+            // Clear existing thumbnails
+            thumbnailsContainer.innerHTML = '';
+            
+            // Create new thumbnails
+            gallery.photos.forEach((photo, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = photo.src;
+                thumbnail.alt = photo.caption;
+                thumbnail.className = index === currentPhotoIndex ? 'thumbnail active' : 'thumbnail';
+                thumbnail.onclick = () => {
+                    currentPhotoIndex = index;
+                    updateGalleryModal();
+                };
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Change photo in gallery
+        function changeGalleryPhoto(direction) {
+            const gallery = memoryGalleries[currentGalleryIndex];
+            
+            currentPhotoIndex += direction;
+            
+            // Wrap around
+            if (currentPhotoIndex < 0) {
+                currentPhotoIndex = gallery.photos.length - 1;
+            } else if (currentPhotoIndex >= gallery.photos.length) {
+                currentPhotoIndex = 0;
+            }
+            
+            updateGalleryModal();
+            
+            // Add animation
+            const galleryImage = document.getElementById('galleryImage');
+            anime({
+                targets: galleryImage,
+                opacity: [0, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        }
+        
+        // Close gallery modal
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
             
             anime({
                 targets: modal,
@@ -613,24 +991,33 @@
                 easing: 'easeOutQuad',
                 complete: function() {
                     modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
                 }
             });
         }
         
-        // Close modal when clicking outside the image
-        window.onclick = function(event) {
-            const modal = document.getElementById('photoModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-        
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
+            const modal = document.getElementById('galleryModal');
+            
+            if (modal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeGalleryModal();
+                } else if (e.key === 'ArrowLeft') {
+                    changeGalleryPhoto(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeGalleryPhoto(1);
+                }
             }
         });
+        
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (event.target == modal) {
+                closeGalleryModal();
+            }
+        };
         
         // Add smooth scrolling for better UX
         document.documentElement.style.scrollBehavior = 'smooth';
